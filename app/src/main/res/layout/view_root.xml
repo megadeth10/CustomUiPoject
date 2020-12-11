@@ -12,6 +12,7 @@
         android:background="@color/blue"
         android:navigationIcon="@android:drawable/ic_delete"
         android:title="BaseActivity"
+        android:minHeight="70dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
