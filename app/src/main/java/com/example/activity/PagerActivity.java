@@ -1,7 +1,9 @@
 package com.example.activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toolbar;
 
 import com.example.custom.activity.BaseActivity;
 import com.example.custom.view.pager.CustomViewPager;
@@ -12,13 +14,18 @@ import com.example.util.Log;
 
 import java.util.ArrayList;
 
-public class PagerActivity extends BaseActivity {
+public class PagerActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener{
     CustomViewPager mPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = PagerActivity.class.getSimpleName();
         setTextToolBar("Infinity Pager View");
+        this.mToolBar.inflateMenu(R.menu.menu_pager);
+        this.mToolBar.setOnMenuItemClickListener(this);
+        View view = View.inflate(this, R.layout.view_toolbar_button, this.mToolBar);
+        view.findViewById(R.id.toolbar_btn1).setOnClickListener(this);
+        view.findViewById(R.id.toolbar_btn2).setOnClickListener(this);
 
         setContentsLayout(R.layout.layout_pager);
         mPager = findViewById(R.id.custom_pager);
@@ -47,5 +54,39 @@ public class PagerActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         mPager.stopRolling();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.mPager = null;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if(id == R.id.menu_add){
+            this.showSnackBar("추가");
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        String text;
+        switch (id){
+            case R.id.toolbar_btn1:
+                text = "버튼 1";
+                break;
+            case R.id.toolbar_btn2:
+                text = "버튼 2";
+                break;
+            default:
+                text = "오류";
+                break;
+        }
+        this.showSnackBar(text);
     }
 }

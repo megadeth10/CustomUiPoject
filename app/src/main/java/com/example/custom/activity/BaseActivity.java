@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity{
     protected String TAG = BaseActivity.class.getSimpleName();
-    private Snackbar mSnackBar;
-    private Toolbar mToolBar;
+    protected Snackbar mSnackBar;
+    protected Toolbar mToolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
