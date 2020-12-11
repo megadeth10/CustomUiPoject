@@ -2,11 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/normal_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="일반 버튼"/>
+        android:text="일반 버튼"
+        android:layout_marginHorizontal="10dp"/>
+
+    <Button
+        android:id="@+id/text_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Material 텍스트 버튼"
+        android:layout_marginHorizontal="10dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+    <Button
+        android:id="@+id/text_icon_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Material 텍스트 아이콘 일반 버튼"
+        android:layout_marginHorizontal="10dp"
+        app:icon="@android:drawable/ic_dialog_email"
+        android:textColor="@color/black"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/text_outline_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Material 외곽선 버튼"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        app:strokeColor="@color/black"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        />
 </LinearLayout>
