@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
         tools:replace="android:allowBackup">
+        <activity
+            android:name="com.example.activity.CardScrollActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name="com.example.activity.MaterialButtonActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>

@@ -1,6 +1,7 @@
 package com.example.activity.menu;
 
 
+import com.example.activity.CardScrollActivity;
 import com.example.activity.MaterialButtonActivity;
 import com.example.activity.PagerActivity;
 import com.example.custom.activity.BaseActivity;
@@ -14,6 +15,7 @@ public class UIList {
         if(mList.size() == 0){
             mList.add(new MenuItem("PagerView", PagerActivity.class));
             mList.add(new MenuItem("Button List", MaterialButtonActivity.class));
+            mList.add(new MenuItem("Card Horizontal ScrollView", CardScrollActivity.class));
         }
     }
 
