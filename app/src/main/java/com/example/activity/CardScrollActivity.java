@@ -4,11 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.custom.activity.BaseActivity;
-import com.example.custom.view.pager.adapter.item.ImagePagerItem;
 import com.example.custom.view.scrollview.cardscrollview.CardItem;
 import com.example.custom.view.scrollview.cardscrollview.CardScrollView;
 import com.example.myapplication.R;
-import com.example.util.Log;
+import com.example.utils.Log;
 
 import java.util.ArrayList;
 

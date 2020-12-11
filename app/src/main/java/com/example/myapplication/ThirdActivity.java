@@ -11,28 +11,14 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.javatest.ClassTest;
-import com.example.kotlintest.AAA;
-import com.example.kotlintest.BBB;
-import com.example.kotlintest.EnumtestKt;
 import com.example.secure.secure;
-import com.example.util.Log;
+import com.example.utils.Log;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.security.InvalidKeyException;
-import java.security.KeyFactory;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.Signature;
-import java.security.UnrecoverableEntryException;
-import java.security.cert.CertificateException;
-import java.util.ArrayList;
 
 public class ThirdActivity extends AppCompatActivity {
     TextView resultTv;

@@ -13,7 +13,7 @@ import com.example.network.networkLayer;
 import com.example.network.response.appInfoResponse;
 import com.example.network.response.errorResponse;
 import com.example.network.response.resultResponse;
-import com.example.util.Log;
+import com.example.utils.Log;
 
 public class SecondActivity extends AppCompatActivity {
     TextView resultTv;

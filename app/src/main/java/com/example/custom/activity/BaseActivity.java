@@ -7,7 +7,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.myapplication.R;
-import com.example.util.Log;
+import com.example.utils.Log;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;

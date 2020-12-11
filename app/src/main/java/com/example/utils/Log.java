@@ -1,7 +1,6 @@
-package com.example.util;
+package com.example.utils;
 
 import com.example.global.AppApplication;
-import com.example.myapplication.BuildConfig;
 
 public class Log {
 

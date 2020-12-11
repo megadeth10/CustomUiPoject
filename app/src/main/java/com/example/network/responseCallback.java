@@ -2,7 +2,7 @@ package com.example.network;
 
 import com.example.network.response.errorResponse;
 import com.example.network.response.resultResponse;
-import com.example.util.Log;
+import com.example.utils.Log;
 import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;

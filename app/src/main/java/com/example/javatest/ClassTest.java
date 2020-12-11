@@ -1,6 +1,6 @@
 package com.example.javatest;
 
-import com.example.util.Log;
+import com.example.utils.Log;
 
 public class ClassTest {
     int mInt;

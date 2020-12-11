@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.myapplication.R;
-import com.example.util.Log;
+import com.example.utils.Log;
 
 import androidx.annotation.Nullable;
 

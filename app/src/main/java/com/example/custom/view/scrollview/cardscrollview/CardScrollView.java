@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.util.Log;
+import com.example.utils.Log;
 
 import java.util.ArrayList;
 

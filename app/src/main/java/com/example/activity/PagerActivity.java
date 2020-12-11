@@ -1,8 +1,11 @@
 package com.example.activity;
 
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toolbar;
 
 import com.example.custom.activity.BaseActivity;
@@ -10,7 +13,8 @@ import com.example.custom.view.pager.CustomViewPager;
 import com.example.custom.view.pager.adapter.ImagePagerAdapter;
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
 import com.example.myapplication.R;
-import com.example.util.Log;
+import com.example.utils.Log;
+import com.example.utils.util;
 
 import java.util.ArrayList;
 
@@ -42,6 +46,11 @@ public class PagerActivity extends BaseActivity implements Toolbar.OnMenuItemCli
             }
         };
         mPager.setAdapter(new ImagePagerAdapter(this, list, clickListener));
+        ViewGroup.LayoutParams layoutParams = mPager.getLayoutParams();
+        Point scaledPoint = util.ratioSize(this, 375.0f, 200.0f, null);
+        layoutParams.height = scaledPoint.y;
+        Log.e(TAG, String.format("onCreate scaledPoint.y : %d", scaledPoint.y));
+        mPager.setLayoutParams(layoutParams);
     }
 
     @Override
