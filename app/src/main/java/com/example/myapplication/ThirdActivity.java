@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +15,7 @@ import com.example.kotlintest.AAA;
 import com.example.kotlintest.BBB;
 import com.example.kotlintest.EnumtestKt;
 import com.example.secure.secure;
+import com.example.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

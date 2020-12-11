@@ -1,7 +1,6 @@
 package com.example.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.custom.activity.BaseActivity;
@@ -9,6 +8,7 @@ import com.example.custom.view.pager.CustomViewPager;
 import com.example.custom.view.pager.adapter.ImagePagerAdapter;
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
 import com.example.myapplication.R;
+import com.example.util.Log;
 
 import java.util.ArrayList;
 

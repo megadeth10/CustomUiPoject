@@ -1,13 +1,13 @@
 package com.example.custom.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.myapplication.R;
+import com.example.util.Log;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;

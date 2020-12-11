@@ -1,15 +1,9 @@
 package com.example.myapplication;
 
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Slide;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -19,16 +13,7 @@ import com.example.network.networkLayer;
 import com.example.network.response.appInfoResponse;
 import com.example.network.response.errorResponse;
 import com.example.network.response.resultResponse;
-
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
+import com.example.util.Log;
 
 public class SecondActivity extends AppCompatActivity {
     TextView resultTv;

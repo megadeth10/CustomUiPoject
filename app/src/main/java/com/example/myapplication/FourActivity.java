@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +14,7 @@ import com.example.network.networkLayer;
 import com.example.network.response.appInfoResponse;
 import com.example.network.response.errorResponse;
 import com.example.network.response.resultResponse;
+import com.example.util.Log;
 
 public class FourActivity extends AppCompatActivity implements IApiCallback {
     private apiResponseAdapter adapter;

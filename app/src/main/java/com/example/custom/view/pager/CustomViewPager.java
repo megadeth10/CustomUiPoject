@@ -2,7 +2,6 @@ package com.example.custom.view.pager;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +13,7 @@ import com.example.custom.timer.CustomTimer;
 import com.example.custom.view.pager.adapter.BasePagerAdapter;
 import com.example.myapplication.R;
 import com.example.util.ExtraName;
+import com.example.util.Log;
 
 import androidx.viewpager.widget.ViewPager;
 
