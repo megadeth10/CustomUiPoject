@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.custom.timer.CustomTimer;
 import com.example.custom.view.pager.adapter.BasePagerAdapter;
-import com.example.myapplication.R;
+import com.example.test.myapplication.R;
 import com.example.utils.ExtraName;
 import com.example.utils.Log;
 

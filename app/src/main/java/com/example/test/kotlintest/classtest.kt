@@ -1,6 +1,4 @@
-package com.example.kotlintest
-
-import java.util.*
+package com.example.test.kotlintest
 
 class AAA(val value: Int){
     var mValue: Int = value

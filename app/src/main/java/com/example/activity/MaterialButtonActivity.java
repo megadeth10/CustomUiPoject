@@ -1,17 +1,12 @@
 package com.example.activity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.custom.activity.BaseActivity;
-import com.example.myapplication.R;
+import com.example.test.myapplication.R;
 
 // Material Component 사용시에 Style를 @style/Theme.AppCompat.DayNight.NoActionBar 이게 아니고
 // @style/Theme.MaterialComponents.Light.NoActionBar를 사용해야 inflate 된다.

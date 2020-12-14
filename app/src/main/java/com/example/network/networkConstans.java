@@ -1,6 +1,6 @@
 package com.example.network;
 
-import com.example.myapplication.BuildConfig;
+import com.example.test.myapplication.BuildConfig;
 
 public class networkConstans {
     static public String APP_TOKEN = BuildConfig.ACCESS_TOKEN;

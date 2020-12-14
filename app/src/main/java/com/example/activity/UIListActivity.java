@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.example.activity.menu.MenuAdapter;
 import com.example.activity.menu.UIList;
-import com.example.myapplication.R;
+import com.example.test.myapplication.R;
 
 public class UIListActivity extends AppCompatActivity {
     private UIList mListData = new UIList();

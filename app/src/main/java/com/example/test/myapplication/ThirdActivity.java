@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.test.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import com.example.javatest.ClassTest;
+import com.example.test.javatest.ClassTest;
 import com.example.secure.secure;
 import com.example.utils.Log;
 import com.google.gson.Gson;

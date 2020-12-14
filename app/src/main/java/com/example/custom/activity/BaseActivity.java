@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-import com.example.myapplication.R;
+import com.example.test.myapplication.R;
 import com.example.utils.Log;
 import com.google.android.material.snackbar.Snackbar;
 

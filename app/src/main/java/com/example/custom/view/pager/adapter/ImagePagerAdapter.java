@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
-import com.example.myapplication.R;
+import com.example.test.myapplication.R;
 
 import java.util.ArrayList;
 

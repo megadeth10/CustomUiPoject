@@ -1,4 +1,4 @@
-package com.example.javatest;
+package com.example.test.javatest;
 
 import com.example.utils.Log;
 

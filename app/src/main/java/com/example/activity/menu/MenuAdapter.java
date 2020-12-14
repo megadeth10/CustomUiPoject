@@ -5,8 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myapplication.R;
-import com.example.network.response.appInfoResponse;
+import com.example.test.myapplication.R;
 
 import java.util.ArrayList;
 

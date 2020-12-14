@@ -1,7 +1,6 @@
 package com.example.activity;
 
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +11,7 @@ import com.example.custom.activity.BaseActivity;
 import com.example.custom.view.pager.CustomViewPager;
 import com.example.custom.view.pager.adapter.ImagePagerAdapter;
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
-import com.example.myapplication.R;
+import com.example.test.myapplication.R;
 import com.example.utils.Log;
 import com.example.utils.util;
 
