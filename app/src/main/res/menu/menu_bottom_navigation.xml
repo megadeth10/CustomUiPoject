@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_add"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="추가" />
+    <item
+        android:id="@+id/menu_remove"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="제거" />
+    <item
+        android:id="@+id/menu_plus"
+        android:icon="@android:drawable/ic_lock_idle_charging"
+        android:title="나누기" />
+    <item
+        android:id="@+id/menu_minus"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="곱하기" />
+</menu>
