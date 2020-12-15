@@ -22,9 +22,11 @@ public class UIListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_u_i);
 
         RecyclerView recyclerView = findViewById(R.id.ui_list);
+        recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(getDrawable(R.drawable.list_divider));
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         MenuAdapter adapter = new MenuAdapter(new View.OnClickListener() {
