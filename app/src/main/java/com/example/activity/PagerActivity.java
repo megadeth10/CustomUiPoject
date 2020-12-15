@@ -40,15 +40,14 @@ public class PagerActivity extends BaseActivity implements Toolbar.OnMenuItemCli
             @Override
             public void onClick(View view) {
                 ImagePagerItem data = (ImagePagerItem) view.getTag();
-                Log.e(TAG,
-                        String.format("data title = %d", Integer.valueOf((Integer) data.getData())));
+                logE(String.format("data title = %d", Integer.valueOf((Integer) data.getData())));
             }
         };
         mPager.setAdapter(new ImagePagerAdapter(this, list, clickListener));
         ViewGroup.LayoutParams layoutParams = mPager.getLayoutParams();
         Point scaledPoint = util.ratioSize(this, 375.0f, 200.0f, null);
         layoutParams.height = scaledPoint.y;
-        Log.e(TAG, String.format("onCreate scaledPoint.y : %d", scaledPoint.y));
+        logE(String.format("onCreate scaledPoint.y : %d", scaledPoint.y));
         mPager.setLayoutParams(layoutParams);
     }
 

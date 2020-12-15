@@ -1,5 +1,6 @@
 package com.example.custom.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,11 @@ public class BaseActivity extends AppCompatActivity{
     protected String TAG = BaseActivity.class.getSimpleName();
     protected Snackbar mSnackBar;
     protected Toolbar mToolBar;
+    protected Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.mContext = this;
         setContentView(R.layout.activity_base);
 
         mToolBar = findViewById(R.id.toolbar);
@@ -72,5 +75,21 @@ public class BaseActivity extends AppCompatActivity{
                 .setTextColor(getResources().getColor(R.color.blue))
                 .setActionTextColor(getResources().getColor(R.color.red));
         mSnackBar.show();
+    }
+
+    protected void logE(String msg){
+        Log.e(this.TAG, msg);
+    }
+
+    protected void logI(String msg){
+        Log.i(this.TAG, msg);
+    }
+
+    protected void logW(String msg){
+        Log.w(this.TAG, msg);
+    }
+
+    protected void logD(String msg){
+        Log.d(this.TAG, msg);
     }
 }

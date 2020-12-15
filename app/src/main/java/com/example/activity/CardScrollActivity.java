@@ -7,7 +7,6 @@ import com.example.custom.activity.BaseActivity;
 import com.example.custom.view.scrollview.cardscrollview.CardItem;
 import com.example.custom.view.scrollview.cardscrollview.CardScrollView;
 import com.example.test.myapplication.R;
-import com.example.utils.Log;
 
 import java.util.ArrayList;
 
@@ -32,14 +31,14 @@ public class CardScrollActivity extends BaseActivity {
         cardScrollView.setImage(list, new CardScrollView.iChangeScroll() {
                     @Override
                     public void changeScroll(int index, int size, Object item) {
-                        Log.e(TAG, String.format("changeScroll: %s", item.toString()));
+                        logE(String.format("changeScroll: %s", item.toString()));
                     }
                 },
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Object obj = view.getTag();
-                        Log.e(TAG, String.format("onClick: %s",obj.toString()));
+                        logE(String.format("onClick: %s",obj.toString()));
                     }
                 });
     }
