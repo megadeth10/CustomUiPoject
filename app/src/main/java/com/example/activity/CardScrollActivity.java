@@ -19,7 +19,7 @@ public class CardScrollActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         this.TAG = CardScrollActivity.class.getSimpleName();
 
-        setTextToolBar("Card Horizontal ScrollView");
+        this.mToolBar.setTitle("Card Horizontal ScrollView");
         setContentsLayout(R.layout.layout_card_scrollview);
         CardScrollView cardScrollView = findViewById(R.id.card_scrollview);
 

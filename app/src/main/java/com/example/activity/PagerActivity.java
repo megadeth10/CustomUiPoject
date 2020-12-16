@@ -12,7 +12,6 @@ import com.example.custom.view.pager.CustomViewPager;
 import com.example.custom.view.pager.adapter.ImagePagerAdapter;
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
 import com.example.test.myapplication.R;
-import com.example.utils.Log;
 import com.example.utils.util;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class PagerActivity extends BaseActivity implements Toolbar.OnMenuItemCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = PagerActivity.class.getSimpleName();
-        setTextToolBar("Infinity Pager View");
+        this.mToolBar.setTitle("Infinity Pager View");
         this.mToolBar.inflateMenu(R.menu.menu_pager);
         this.mToolBar.setOnMenuItemClickListener(this);
         View view = View.inflate(this, R.layout.view_toolbar_button, this.mToolBar);

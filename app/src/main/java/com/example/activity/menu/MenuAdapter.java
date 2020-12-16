@@ -3,6 +3,7 @@ package com.example.activity.menu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.test.myapplication.R;
@@ -50,7 +51,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
         UIList.MenuItem res = (UIList.MenuItem) this.mItemArray.get(position);
         holder.tv.setText(res.getTitle());
-        holder.tv.setTag(res);
+        ((LinearLayout)holder.tv.getParent()).setTag(res);
     }
 
     @Override
