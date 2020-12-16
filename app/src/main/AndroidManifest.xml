@@ -13,6 +13,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
+            android:name="com.example.activity.InfinityListActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
             android:name="com.example.test.material.BottomNavigationActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity

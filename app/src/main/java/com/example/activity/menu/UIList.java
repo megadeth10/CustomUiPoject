@@ -2,6 +2,7 @@ package com.example.activity.menu;
 
 
 import com.example.activity.CardScrollActivity;
+import com.example.activity.InfinityListActivity;
 import com.example.activity.MaterialButtonActivity;
 import com.example.activity.PagerActivity;
 import com.example.test.material.BottomNavigationActivity;
@@ -17,6 +18,7 @@ public class UIList {
             mList.add(new MenuItem("Button List", MaterialButtonActivity.class));
             mList.add(new MenuItem("Card Horizontal ScrollView", CardScrollActivity.class));
             mList.add(new MenuItem("Bottom Navigation Activity", BottomNavigationActivity.class));
+            mList.add(new MenuItem("Infinity List", InfinityListActivity.class));
         }
     }
 
