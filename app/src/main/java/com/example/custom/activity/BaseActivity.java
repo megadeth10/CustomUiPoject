@@ -39,13 +39,11 @@ public class BaseActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         this.TAG = null;
+        this.mToolBar = null;
+        this.mContext = null;
         if(this.mSnackBar != null) {
             this.mSnackBar.dismiss();
             this.mSnackBar = null;
-        }
-
-        if(this.mToolBar != null){
-            this.mToolBar = null;
         }
     }
 
