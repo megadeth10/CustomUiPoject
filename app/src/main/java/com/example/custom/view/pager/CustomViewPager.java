@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.custom.timer.CustomTimer;
 import com.example.custom.view.pager.adapter.BasePagerAdapter;
 import com.example.test.myapplication.R;
-import com.example.utils.ExtraName;
+import com.example.utils.ConstName;
 import com.example.utils.Log;
 
 import androidx.viewpager.widget.ViewPager;
@@ -46,10 +46,10 @@ public class CustomViewPager extends RelativeLayout {
 
     public CustomViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        boolean userIndicator = attrs.getAttributeBooleanValue(ExtraName.ATTRIBUTE_NAME, "enable_indicator", false);
-        boolean isNumberIndicator = attrs.getAttributeBooleanValue(ExtraName.ATTRIBUTE_NAME, "number_indicator", false);
-        boolean isBtnNumberIndicator = attrs.getAttributeBooleanValue(ExtraName.ATTRIBUTE_NAME, "btn_number_indicator", false);
-        boolean isNotIndicator = attrs.getAttributeBooleanValue(ExtraName.ATTRIBUTE_NAME, "not_indicator", false);
+        boolean userIndicator = attrs.getAttributeBooleanValue(ConstName.ATTRIBUTE_NAME, "enable_indicator", false);
+        boolean isNumberIndicator = attrs.getAttributeBooleanValue(ConstName.ATTRIBUTE_NAME, "number_indicator", false);
+        boolean isBtnNumberIndicator = attrs.getAttributeBooleanValue(ConstName.ATTRIBUTE_NAME, "btn_number_indicator", false);
+        boolean isNotIndicator = attrs.getAttributeBooleanValue(ConstName.ATTRIBUTE_NAME, "not_indicator", false);
 
         if (isNumberIndicator) {
             mViewType = VIEW_TYPE.NUMBER_TYPE;
