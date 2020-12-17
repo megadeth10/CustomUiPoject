@@ -4,8 +4,10 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toolbar;
 
 import com.example.custom.activity.DialogActivity;
+import com.example.custom.activity.ToolbarActivity;
 import com.example.test.fragment.FirstFragment;
 import com.example.test.fragment.FourFragment;
 import com.example.test.fragment.SecondFragment;
@@ -18,7 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class BottomNavigationActivity extends DialogActivity {
+public class BottomNavigationActivity extends ToolbarActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

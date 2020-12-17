@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
-import com.example.custom.activity.BaseActivity;
+import com.example.custom.activity.ToolbarActivity;
 import com.example.custom.view.pager.CustomViewPager;
 import com.example.custom.view.pager.adapter.ImagePagerAdapter;
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
@@ -16,7 +16,7 @@ import com.example.utils.util;
 
 import java.util.ArrayList;
 
-public class PagerActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener{
+public class PagerActivity extends ToolbarActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener{
     CustomViewPager mPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

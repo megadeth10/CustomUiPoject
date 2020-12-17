@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 public class DialogActivity extends BaseActivity {
     protected CustomMaterialAlertDialogBuilder mMaterialDialog;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mMaterialDialog = new CustomMaterialAlertDialogBuilder(this.mContext);
     }

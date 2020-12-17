@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.activity.item.InfinityItem;
-import com.example.custom.activity.BaseActivity;
+import com.example.custom.activity.ToolbarActivity;
 import com.example.custom.widget.listview.InfinityListView;
 import com.example.custom.widget.listview.adapter.InfinityAdapter;
 import com.example.custom.widget.listview.callback.iInfinityListCallback;
@@ -22,7 +22,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class InfinityListActivity extends BaseActivity implements iInfinityListCallback, View.OnClickListener {
+public class InfinityListActivity extends ToolbarActivity implements iInfinityListCallback, View.OnClickListener {
     private ArrayList<InfinityItem> mListData = new ArrayList();
     private int REQUEST_DATA = 0;
 

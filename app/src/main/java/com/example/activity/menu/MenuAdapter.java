@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.test.myapplication.R;
+import com.example.utils.Log;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
+    private String TAG = MenuAdapter.class.getSimpleName();
     private ArrayList<?> mItemArray = new ArrayList<>();
     private View.OnClickListener mOnClickListener;
 
@@ -52,6 +54,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         UIList.MenuItem res = (UIList.MenuItem) this.mItemArray.get(position);
         holder.tv.setText(res.getTitle());
         ((LinearLayout)holder.tv.getParent()).setTag(res);
+        Log.e(TAG, String.format("onBindViewHolder() position: %d", position));
     }
 
     @Override

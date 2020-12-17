@@ -5,48 +5,36 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.test.myapplication.R;
 import com.example.utils.Log;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BaseActivity extends AppCompatActivity{
-    protected String TAG = BaseActivity.class.getSimpleName();
+public class BaseActivity extends AppCompatActivity {
+    protected String TAG = ToolbarActivity.class.getSimpleName();
     protected Snackbar mSnackBar;
-    protected Toolbar mToolBar;
     protected Context mContext;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mContext = this;
-        setContentView(R.layout.activity_base);
-
-        mToolBar = findViewById(R.id.toolbar);
-        setActionBar(mToolBar);
-        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG, "onClick");
-                finish();
-            }
-        });
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         this.TAG = null;
-        this.mToolBar = null;
         this.mContext = null;
         if(this.mSnackBar != null) {
             this.mSnackBar.dismiss();
             this.mSnackBar = null;
         }
+        super.onDestroy();
     }
+
 
     protected View setContentsLayout(int resource){
         ViewGroup viewGroup = findViewById(R.id.content_view);

@@ -3,7 +3,7 @@ package com.example.activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.custom.activity.BaseActivity;
+import com.example.custom.activity.ToolbarActivity;
 import com.example.custom.view.scrollview.cardscrollview.CardItem;
 import com.example.custom.view.scrollview.cardscrollview.CardScrollView;
 import com.example.test.myapplication.R;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 
-public class CardScrollActivity extends BaseActivity {
+public class CardScrollActivity extends ToolbarActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
