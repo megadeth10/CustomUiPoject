@@ -18,6 +18,7 @@ public class BaseActivity extends AppCompatActivity{
     protected Snackbar mSnackBar;
     protected Toolbar mToolBar;
     protected Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +51,6 @@ public class BaseActivity extends AppCompatActivity{
     protected View setContentsLayout(int resource){
         ViewGroup viewGroup = findViewById(R.id.content_view);
         return View.inflate(this, resource, viewGroup);
-    }
-
-    protected void setTextToolBar(String text){
-        this.mToolBar.setTitle(text);
-    }
-
-    protected void setNavigationOnClickListener(View.OnClickListener onClickListener){
-        this.mToolBar.setNavigationOnClickListener(onClickListener);
     }
 
     protected void showSnackBar(String message){
