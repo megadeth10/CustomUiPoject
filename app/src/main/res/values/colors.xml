@@ -11,4 +11,5 @@
     <color name="black">#000000</color>
     <color name="color_8c8c8c">#8c8c8c</color>
     <color name="color_FFFF80">#FFFF80</color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>

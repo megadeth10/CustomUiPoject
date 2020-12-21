@@ -32,7 +32,7 @@ public class UIListActivity extends AppCompatActivity {
         MenuAdapter adapter = new MenuAdapter(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UIList.MenuItem item = (UIList.MenuItem) view.findViewById(R.id.title).getTag();
+                UIList.MenuItem item = (UIList.MenuItem) view.getTag();
                 if(item != null){
                     callActivity(item);
                 }

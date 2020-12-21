@@ -13,6 +13,12 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
+            android:name="com.example.activity.TestActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.activity.CollapsingToolbarLayoutActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
             android:name="com.example.activity.InfinityListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
@@ -54,6 +60,5 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
-
 
 </manifest>
