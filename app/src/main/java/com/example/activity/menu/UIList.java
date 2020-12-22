@@ -4,6 +4,7 @@ import com.example.activity.CardScrollActivity;
 import com.example.activity.InfinityListActivity;
 import com.example.activity.MaterialButtonActivity;
 import com.example.activity.CollapsingToolbarLayoutActivity;
+import com.example.activity.NestedScrollViewActivity;
 import com.example.activity.PagerActivity;
 import com.example.test.material.BottomNavigationActivity;
 
@@ -20,6 +21,7 @@ public class UIList {
             mList.add(new MenuItem("Bottom Navigation Activity", BottomNavigationActivity.class));
             mList.add(new MenuItem("Infinity List", InfinityListActivity.class));
             mList.add(new MenuItem("CollapsingToolbarLayout", CollapsingToolbarLayoutActivity.class));
+            mList.add(new MenuItem("NestedScrollView", NestedScrollViewActivity.class));
         }
     }
 
