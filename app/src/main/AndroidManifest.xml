@@ -13,9 +13,6 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
-            android:name="com.example.activity.TestActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity
             android:name="com.example.activity.CollapsingToolbarLayoutActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
@@ -26,13 +23,13 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.activity.CardScrollActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.activity.MaterialButtonActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.activity.PagerActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name="com.example.activity.UIListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
