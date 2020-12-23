@@ -73,9 +73,6 @@ class ReverseHideBottomViewOnScrollBehavior<V : View?> : CoordinatorLayout.Behav
 //        } else if (dyConsumed < 0) {
 //            slideUp(child)
 //        }
-
-//        Log.e(TAG, String.format("onNestedScroll() dyUnconsumed: %d dyConsumed: %d", dyUnconsumed, dyConsumed))
-//        childToTranslation(child, offset)
     }
 
     override fun onNestedPreScroll(coordinatorLayout: CoordinatorLayout, child: V, target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
@@ -146,7 +143,6 @@ class ReverseHideBottomViewOnScrollBehavior<V : View?> : CoordinatorLayout.Behav
             this.offset = transformValue
             child?.translationY = this.offset.toFloat()
         }
-//        Log.e(TAG, String.format("animateChildTo() offset: %d targetY: %d", this.offset, transformValue))
     }
 
     companion object {

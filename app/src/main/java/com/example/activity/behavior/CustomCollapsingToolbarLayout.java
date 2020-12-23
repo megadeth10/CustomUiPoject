@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewParent;
 
-import com.example.utils.Log;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -62,13 +61,11 @@ public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
                     case LayoutParams.COLLAPSE_MODE_PIN:
                         if(this.pinModeLayoutHeight == -1) {
                             pinModeLayoutHeight = child.getHeight();
-                            Log.e(TAG, String.format("pinModeLayoutHeight : %d", pinModeLayoutHeight));
                         }
                         break;
                     case LayoutParams.COLLAPSE_MODE_PARALLAX:
                         if(this.parallaxModeLayoutHeight == -1) {
                             parallaxModeLayoutHeight = child.getHeight();
-                            Log.e(TAG, String.format("parallaxModeLayoutHeight : %d", parallaxModeLayoutHeight));
                         }
                         break;
                     default:
@@ -94,7 +91,6 @@ public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
                         ColorDrawable colorDrawable = (ColorDrawable) child.getBackground();
                         colorDrawable.setAlpha((int) alpha);
                         child.setBackground(colorDrawable);
-                        Log.e(TAG, String.format("alpha : %f", alpha));
                     }
                     break;
                 default:
