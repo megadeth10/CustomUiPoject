@@ -15,6 +15,10 @@ import com.example.test.myapplication.R
 import kotlinx.android.synthetic.main.menu_item.view.*
 import kotlin.collections.ArrayList
 
+/**
+ * NestedScrollView를 사용고 RecycleView를 사용하더라도 List의 Item이 한번에 다 생성 된다.
+ * 메모리 효율에 문제가 생길듯 하다.
+ */
 class NestedScrollViewActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
