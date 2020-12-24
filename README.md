@@ -1,4 +1,6 @@
 # CustomUiPoject
+
+테스트 앱 Link: [Android apk](apk/app-debug.apk)
 안드로이드 정보 축적용
 
 android stuid github 연결
