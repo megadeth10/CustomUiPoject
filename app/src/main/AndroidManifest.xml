@@ -13,6 +13,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
+            android:name="com.example.activity.FoldListActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
             android:name="com.example.activity.NestedScrollViewActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity

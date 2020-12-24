@@ -1,6 +1,7 @@
 package com.example.activity.menu;
 
 import com.example.activity.CardScrollActivity;
+import com.example.activity.FoldListActivity;
 import com.example.activity.InfinityListActivity;
 import com.example.activity.MaterialButtonActivity;
 import com.example.activity.CollapsingToolbarLayoutActivity;
@@ -22,6 +23,7 @@ public class UIList {
             mList.add(new MenuItem("Infinity List", InfinityListActivity.class));
             mList.add(new MenuItem("CollapsingToolbarLayout", CollapsingToolbarLayoutActivity.class));
             mList.add(new MenuItem("NestedScrollView", NestedScrollViewActivity.class));
+            mList.add(new MenuItem("Fold List", FoldListActivity.class));
         }
     }
 
