@@ -15,8 +15,6 @@ import com.example.utils.util
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_collapsing_toolbar.*
 
-// TODO: CollapsingToolbarLayout은 behavior가 없나 있다면 toolbar background color 적용 해보기
-// TODO: FloatingActionButton TestBehavior를 custom 해보기...
 class CollapsingToolbarLayoutActivity : AppCompatActivity() {
     val TAG: String = CollapsingToolbarLayoutActivity::class.simpleName.toString()
     override fun onCreate(savedInstanceState: Bundle?) {
