@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.custom.widget.listview.callback.iRecycleViewAdapterCallback;
 import com.example.test.myapplication.R;
+import com.example.utils.Log;
 
 import java.util.ArrayList;
 
@@ -79,6 +80,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         UIList.MenuItem res = (UIList.MenuItem) this.mItemArray.get(position);
         holder.tv.setText(res.getTitle());
         ((LinearLayout) holder.tv.getParent()).setTag(res);
+        Log.e(TAG,String.format("position %d", position));
     }
 
     @Override
