@@ -16,7 +16,7 @@
             android:name="com.example.activity.FoldListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.activity.NestedScrollViewActivity"
+            android:name="com.example.activity.ScrollingViewBehaviorActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.activity.CollapsingToolbarLayoutActivity"
