@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,12 @@ import com.example.activity.menu.MenuAdapter
 import com.example.activity.menu.UIList
 import com.example.custom.activity.ToolbarActivity
 import com.example.test.myapplication.R
+import com.example.utils.Log
 
+/**
+ * NestedScrollView는 RecycleView 단일 스크롤 처럼 사용하기 위한 View
+ * 단점은 Adapter의 View를 재사용하지 않고 한번에 data를 다 만든다.
+ */
 class NestedScrollViewActivity: ToolbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +41,10 @@ class NestedScrollViewActivity: ToolbarActivity() {
         list.adapter = adapter;
         adapter?.itemArray = getList();
         list.adapter?.notifyDataSetChanged()
+
 //        val list = findViewById<ListView>(R.id.list)
 //        val adapter = ListAdapter()
 //        list.adapter = adapter
-//
 //        adapter.setItem(getList())
     }
 
@@ -46,22 +52,22 @@ class NestedScrollViewActivity: ToolbarActivity() {
         val array = ArrayList<UIList.MenuItem>()
         for(i in 0..20){
             array.add(UIList.MenuItem(String.format("aaaa %d", i), null))
-//            array.add(String.format("aaaa-%d",i))
         }
 
         return array
     }
 
     inner class ListAdapter : BaseAdapter() {
-        val data = ArrayList<String>()
+        val data = ArrayList<UIList.MenuItem>()
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
             val view = View.inflate(p2?.context, R.layout.menu_item, null)
-            val text = getItem(p0)
-            view.findViewById<TextView>(R.id.title).text = text
+            val item = getItem(p0)
+            view.findViewById<TextView>(R.id.title).text = item.title
+            Log.e(TAG, String.format("item %d",p0))
             return view
         }
 
-        override fun getItem(p0: Int): String {
+        override fun getItem(p0: Int): UIList.MenuItem {
             return this.data[p0]
         }
 
@@ -73,7 +79,7 @@ class NestedScrollViewActivity: ToolbarActivity() {
             return this.data.size
         }
 
-        fun setItem(array: ArrayList<String>){
+        fun setItem(array: ArrayList<UIList.MenuItem>){
             this.data.addAll(array)
             notifyDataSetChanged()
         }
