@@ -22,7 +22,7 @@ public class UIList {
             mList.add(new MenuItem("Bottom Navigation Activity", BottomNavigationActivity.class));
             mList.add(new MenuItem("Infinity List", InfinityListActivity.class));
             mList.add(new MenuItem("CollapsingToolbarLayout", CollapsingToolbarLayoutActivity.class));
-            mList.add(new MenuItem("NestedScrollView", NestedScrollViewActivity.class));
+            mList.add(new MenuItem("Scrolling View Behavior", NestedScrollViewActivity.class));
             mList.add(new MenuItem("Fold List", FoldListActivity.class));
         }
     }
