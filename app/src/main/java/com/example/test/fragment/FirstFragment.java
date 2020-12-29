@@ -46,7 +46,12 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, null);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -58,8 +63,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener{
         NormalAdapter adapter = new NormalAdapter(this);
         recyclerView.setAdapter(adapter);
         adapter.setItemArray(mListData);
-
-        return view;
     }
 
     @Override
