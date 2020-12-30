@@ -15,15 +15,18 @@ import com.example.custom.widget.listview.InfinityListView;
 import com.example.custom.widget.listview.adapter.InfinityAdapter;
 import com.example.custom.widget.listview.callback.iInfinityListCallback;
 import com.example.test.myapplication.R;
+import com.example.utils.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class InfinityListActivity extends ToolbarActivity implements iInfinityListCallback, View.OnClickListener {
-    private ArrayList<InfinityItem> mListData = new ArrayList();
+//    private ArrayList<InfinityItem> mListData = new ArrayList();
     private int REQUEST_DATA = 0;
 
     @Override
@@ -35,7 +38,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         view.findViewById(R.id.toolbar_btn1).setOnClickListener(this);
         view.findViewById(R.id.toolbar_btn2).setVisibility(View.GONE);
 
-        mListData = (ArrayList<InfinityItem>) this.getDataList(0);
+//        mListData = (ArrayList<InfinityItem>) this.getDataList(0);
 
         setContentsLayout(R.layout.layout_infinity_list);
         InfinityListView recyclerView = findViewById(R.id.list);
@@ -54,14 +57,24 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         },
                 this);
         recyclerView.setAdapter(adapter);
-        adapter.setItemArray(this.mListData);
+        adapter.setItemArray((ArrayList<InfinityItem>) this.getDataList(0));
+
+        final SwipeRefreshLayout refreshLayout = findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.e(TAG, String.format("onRefresh"));
+                refreshLayout.setRefreshing(false);
+                refreshList();
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.mListData.clear();
-        this.mListData = null;
+//        this.mListData.clear();
+//        this.mListData = null;
         this.mLoadDataHandler.removeCallbacksAndMessages(null);
         this.mLoadDataHandler = null;
     }
@@ -72,14 +85,11 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
             if(message.what == REQUEST_DATA){
                 InfinityListView recyclerView = findViewById(R.id.list);
                 int count = ((InfinityAdapter) recyclerView.getAdapter()).getPageCount();
+                ArrayList list = null;
                 if(count < 3) {// TODO: 테스트용
-                    ArrayList list = (ArrayList) getDataList(count);
-                    ((InfinityAdapter) recyclerView.getAdapter()).setItemArray(list);
-                } else {
-                    ((InfinityAdapter) recyclerView.getAdapter()).setItemArray(new ArrayList());
+                    list = (ArrayList) getDataList(count);
                 }
-                recyclerView.setEndItem(((InfinityAdapter) recyclerView.getAdapter()).isLastItem());
-                recyclerView.setLoaded();
+                setList(list);
                 return true;
             }
             return false;
@@ -106,8 +116,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         int id = view.getId();
         switch (id){
             case R.id.toolbar_btn1:
-                InfinityListView recyclerView = findViewById(R.id.list);
-                ((InfinityAdapter) recyclerView.getAdapter()).resetAdapter();
+                this.refreshList();
                 break;
         }
     }
@@ -119,6 +128,26 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
             super(itemView);
             tv = itemView.findViewById(R.id.title);
         }
+    }
+
+    private void refreshList(){
+        this.resetList();
+        this.setList(this.getDataList(0));
+    }
+
+    private void resetList(){
+        InfinityListView recyclerView = findViewById(R.id.list);
+        ((InfinityAdapter) recyclerView.getAdapter()).resetAdapter();
+    }
+
+    private void setList(@NonNull List<InfinityItem> list){
+        List<InfinityItem> data = list;
+        if(list == null || (list != null && list.size() == 0)){
+            data = new ArrayList<>(0);
+        }
+        InfinityListView recyclerView = findViewById(R.id.list);
+        ((InfinityAdapter) recyclerView.getAdapter()).setItemArray(data);
+        recyclerView.setLoaded();
     }
 
     /**

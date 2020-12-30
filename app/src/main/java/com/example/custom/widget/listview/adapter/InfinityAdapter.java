@@ -71,7 +71,7 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
     private void init(View.OnClickListener listener, iInfinityListCallback callback, int pagePerCount){
         this.mOnClickListener = listener;
         this.iInfinityListCallback = callback;
-        this.mItemArray = new ArrayList<>();
+        this.mItemArray = new ArrayList<>(0);
         this.mItemArray.add(null);
         this.pagePerCount = pagePerCount;
         this.pageCount = 0;
