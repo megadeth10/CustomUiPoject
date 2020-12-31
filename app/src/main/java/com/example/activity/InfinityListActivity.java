@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.activity.item.InfinityItem;
+import com.example.activity.infinitylist.Retrofit2APIInterface;
+import com.example.activity.infinitylist.item.InfinityItem;
 import com.example.custom.activity.ToolbarActivity;
 import com.example.custom.widget.listview.InfinityListView;
 import com.example.custom.widget.listview.adapter.InfinityAdapter;
 import com.example.custom.widget.listview.callback.iInfinityListCallback;
+import com.example.network.retrofit2.Retrofit2NetworkLayer;
 import com.example.test.myapplication.R;
 import com.example.utils.Log;
 
@@ -21,12 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InfinityListActivity extends ToolbarActivity implements iInfinityListCallback, View.OnClickListener {
     private int REQUEST_DATA = 0;
+    private Call<?> mCaller = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +53,13 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         InfinityAdapter adapter = new InfinityAdapter(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InfinityItem item = (InfinityItem) view.getTag();
+                InfinityItem.Post item = (InfinityItem.Post) view.getTag();
                 showSnackBar(item.getTitle());
             }
         },
                 this);
         recyclerView.setAdapter(adapter);
-        adapter.setItemArray((ArrayList<InfinityItem>) this.getDataList(0));
+        this.getDataList(0);
 
         final SwipeRefreshLayout refreshLayout = findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -72,19 +77,17 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         super.onDestroy();
         this.mLoadDataHandler.removeCallbacksAndMessages(null);
         this.mLoadDataHandler = null;
+        this.cancelCaller();
+
     }
 
     private Handler mLoadDataHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message message) {
-            if(message.what == REQUEST_DATA){
+            if (message.what == REQUEST_DATA) {
                 InfinityListView recyclerView = findViewById(R.id.list);
                 int count = ((InfinityAdapter) recyclerView.getAdapter()).getPageCount();
-                ArrayList list = null;
-                if(count < 3) {// TODO: 테스트용
-                    list = (ArrayList) getDataList(count);
-                }
-                setList(list);
+                getDataList(0);
                 return true;
             }
             return false;
@@ -93,13 +96,13 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
 
     @Override
     public void onBind(@NonNull RecyclerView.ViewHolder holder, int position, List<?> data) {
-        InfinityItem item = (InfinityItem) data.get(position);
+        InfinityItem.Post item = (InfinityItem.Post) data.get(position);
         ((InfinityViewHolder) holder).tv.setText(item.getTitle());
-        ((LinearLayout)((InfinityViewHolder) holder).tv.getParent()).setTag(item);
+        ((LinearLayout) ((InfinityViewHolder) holder).tv.getParent()).setTag(item);
     }
 
     @Override
-    public RecyclerView.ViewHolder createView(@NonNull ViewGroup parent, int viewType,  View.OnClickListener clickListener) {
+    public RecyclerView.ViewHolder createView(@NonNull ViewGroup parent, int viewType, View.OnClickListener clickListener) {
         View view = LayoutInflater.from(this).inflate(R.layout.menu_item, parent, false);
         view.setOnClickListener(clickListener);
         InfinityViewHolder viewHolder = new InfinityViewHolder(view);
@@ -109,7 +112,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id){
+        switch (id) {
             case R.id.toolbar_btn1:
                 this.refreshList();
                 break;
@@ -125,24 +128,35 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         }
     }
 
-    private void refreshList(){
+    private void refreshList() {
         this.resetList();
-        this.setList(this.getDataList(0));
+        this.getDataList(0);
     }
 
-    private void resetList(){
+    private void resetList() {
         InfinityListView recyclerView = findViewById(R.id.list);
         ((InfinityAdapter) recyclerView.getAdapter()).resetAdapter();
     }
 
-    private void setList(@NonNull List<InfinityItem> list){
-        List<InfinityItem> data = list;
-        if(list == null || (list != null && list.size() == 0)){
+    private void setList(@NonNull List<InfinityItem.Post> list) {
+        List<InfinityItem.Post> data = list;
+        if (list == null || (list != null && list.size() == 0)) {
             data = new ArrayList<>(0);
         }
         InfinityListView recyclerView = findViewById(R.id.list);
         ((InfinityAdapter) recyclerView.getAdapter()).setItemArray(data);
         recyclerView.setLoaded();
+    }
+
+    public void cancelCaller() {
+        if(this.mCaller != null){
+            this.mCaller.cancel();
+            this.mCaller = null;
+        }
+    }
+
+    public void setCaller(Call<?> caller) {
+        this.mCaller = caller;
     }
 
     /**
@@ -155,30 +169,27 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         mLoadDataHandler.sendMessageDelayed(msg, 1000);
     }
 
-    private List getDataList(int pageNumber) {
-        List list = new ArrayList();
-        list.add(new InfinityItem(String.format("aaaa %d", pageNumber)));
-        list.add(new InfinityItem(String.format("bbbb %d", pageNumber)));
-        list.add(new InfinityItem(String.format("cccc %d", pageNumber)));
-        list.add(new InfinityItem(String.format("dddd %d", pageNumber)));
-        list.add(new InfinityItem(String.format("eeee %d", pageNumber)));
-        list.add(new InfinityItem(String.format("ffff %d", pageNumber)));
-        list.add(new InfinityItem(String.format("gggg %d", pageNumber)));
-        list.add(new InfinityItem(String.format("hhhh %d", pageNumber)));
-        list.add(new InfinityItem(String.format("iiii %d", pageNumber)));
-        list.add(new InfinityItem(String.format("jjjj %d", pageNumber)));
-        list.add(new InfinityItem(String.format("kkkk %d", pageNumber)));
-        list.add(new InfinityItem(String.format("llll %d", pageNumber)));
-        list.add(new InfinityItem(String.format("mmmm %d", pageNumber)));
-        list.add(new InfinityItem(String.format("nnnn %d", pageNumber)));
-        list.add(new InfinityItem(String.format("oooo %d", pageNumber)));
-        list.add(new InfinityItem(String.format("pppp %d", pageNumber)));
-        list.add(new InfinityItem(String.format("qqqq %d", pageNumber)));
-        list.add(new InfinityItem(String.format("rrrr %d", pageNumber)));
-        list.add(new InfinityItem(String.format("ssss %d", pageNumber)));
-        list.add(new InfinityItem(String.format("tttt %d", pageNumber)));
-        list.add(new InfinityItem(String.format("uuuu %d", pageNumber)));
-        list.add(new InfinityItem(String.format("vvvv %d", pageNumber)));
-        return list;
+    private void getDataList(int pageNumber) {
+        Call<InfinityItem> caller = Retrofit2NetworkLayer.INSTANCE.getInstance().create(Retrofit2APIInterface.class).getPosts();
+        this.setCaller(caller);
+        caller.enqueue(
+                new Callback<InfinityItem>() {
+                    @Override
+                    public void onResponse(Call<InfinityItem> call, Response<InfinityItem> response) {
+                        Log.e(TAG, "onResponse()");
+                        if (response.isSuccessful()) {
+                            InfinityItem item = response.body();
+                            if (item != null) {
+                                setList(item.getData());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<InfinityItem> call, Throwable t) {
+                        Log.e(TAG, String.format("onFailure() %s", t.getMessage()));
+                    }
+                }
+        );
     }
 }
