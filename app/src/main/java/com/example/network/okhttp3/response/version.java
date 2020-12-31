@@ -1,4 +1,4 @@
-package com.example.network.response;
+package com.example.network.okhttp3.response;
 
 public class version {
     private int iosVersionCode;

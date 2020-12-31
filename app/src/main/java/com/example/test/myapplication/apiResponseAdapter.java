@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.network.response.appInfoResponse;
+import com.example.network.okhttp3.response.appInfoResponse;
 
 import java.util.ArrayList;
 

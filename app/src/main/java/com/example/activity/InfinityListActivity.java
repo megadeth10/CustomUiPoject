@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class InfinityListActivity extends ToolbarActivity implements iInfinityListCallback, View.OnClickListener {
-//    private ArrayList<InfinityItem> mListData = new ArrayList();
     private int REQUEST_DATA = 0;
 
     @Override
@@ -37,8 +36,6 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         View view = View.inflate(this, R.layout.view_toolbar_button, this.mToolBar);
         view.findViewById(R.id.toolbar_btn1).setOnClickListener(this);
         view.findViewById(R.id.toolbar_btn2).setVisibility(View.GONE);
-
-//        mListData = (ArrayList<InfinityItem>) this.getDataList(0);
 
         setContentsLayout(R.layout.layout_infinity_list);
         InfinityListView recyclerView = findViewById(R.id.list);
@@ -73,8 +70,6 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        this.mListData.clear();
-//        this.mListData = null;
         this.mLoadDataHandler.removeCallbacksAndMessages(null);
         this.mLoadDataHandler = null;
     }

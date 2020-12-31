@@ -8,11 +8,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import com.example.network.IApiCallback;
-import com.example.network.networkLayer;
-import com.example.network.response.appInfoResponse;
-import com.example.network.response.errorResponse;
-import com.example.network.response.resultResponse;
+import com.example.network.okhttp3.IOkHttp3ApiCallback;
+import com.example.network.okhttp3.OkHttp3NetworkLayer;
+import com.example.network.okhttp3.response.appInfoResponse;
+import com.example.network.okhttp3.response.errorResponse;
+import com.example.network.okhttp3.response.resultResponse;
 import com.example.utils.Log;
 
 public class SecondActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class SecondActivity extends AppCompatActivity {
         getAppInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                networkLayer.getAppInfo(new IApiCallback() {
+                OkHttp3NetworkLayer.getAppInfo(new IOkHttp3ApiCallback() {
                     @Override
                     public void onFailure(errorResponse obj) {
                         String str = String.format("오류 발생\ncode: %d\nmessage: %s\nerror: %s", obj.getStatusCode(), obj.getMessage(), obj.getError());

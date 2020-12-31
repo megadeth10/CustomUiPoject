@@ -1,4 +1,4 @@
-package com.example.network.response;
+package com.example.network.okhttp3.response;
 
 public class appInfoResponse extends resultResponse {
     private String appType;
@@ -16,11 +16,11 @@ public class appInfoResponse extends resultResponse {
         this.appType = appType;
     }
 
-    public com.example.network.response.version getVersion() {
+    public com.example.network.okhttp3.response.version getVersion() {
         return version;
     }
 
-    public void setVersion(com.example.network.response.version version) {
+    public void setVersion(com.example.network.okhttp3.response.version version) {
         this.version = version;
     }
 }

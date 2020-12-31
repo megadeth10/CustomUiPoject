@@ -9,14 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.network.IApiCallback;
-import com.example.network.networkLayer;
-import com.example.network.response.appInfoResponse;
-import com.example.network.response.errorResponse;
-import com.example.network.response.resultResponse;
+import com.example.network.okhttp3.IOkHttp3ApiCallback;
+import com.example.network.okhttp3.OkHttp3NetworkLayer;
+import com.example.network.okhttp3.response.appInfoResponse;
+import com.example.network.okhttp3.response.errorResponse;
+import com.example.network.okhttp3.response.resultResponse;
 import com.example.utils.Log;
 
-public class FourActivity extends AppCompatActivity implements IApiCallback {
+public class FourActivity extends AppCompatActivity implements IOkHttp3ApiCallback {
     private apiResponseAdapter adapter;
     RecyclerView listView;
     @Override
@@ -49,7 +49,7 @@ public class FourActivity extends AppCompatActivity implements IApiCallback {
     }
 
     private void getData() {
-        networkLayer.getAppInfo(this, appInfoResponse.class);
+        OkHttp3NetworkLayer.getAppInfo(this, appInfoResponse.class);
     }
 
     @Override

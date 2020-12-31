@@ -1,7 +1,7 @@
-package com.example.network;
+package com.example.network.okhttp3;
 
-import com.example.network.response.errorResponse;
-import com.example.network.response.resultResponse;
+import com.example.network.okhttp3.response.errorResponse;
+import com.example.network.okhttp3.response.resultResponse;
 import com.example.utils.Log;
 import com.google.gson.Gson;
 
@@ -14,11 +14,11 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class responseCallback implements Callback {
-    private IApiCallback mApiCallback;
+public class OkHttp3ResponseCallback implements Callback {
+    private IOkHttp3ApiCallback mApiCallback;
     private Class<?> parseObject;
 
-    public responseCallback(IApiCallback apiCallback, Class<?> obj){
+    public OkHttp3ResponseCallback(IOkHttp3ApiCallback apiCallback, Class<?> obj){
         this.mApiCallback = apiCallback;
         this.parseObject = obj;
     }
@@ -35,8 +35,8 @@ public class responseCallback implements Callback {
         String message = response.message();
         String body = response.body().string();
         try {
-            Log.i(responseCallback.class.getSimpleName(), Integer.toString(response.code()));
-            Log.i(responseCallback.class.getSimpleName(), body);
+            Log.i(OkHttp3ResponseCallback.class.getSimpleName(), Integer.toString(response.code()));
+            Log.i(OkHttp3ResponseCallback.class.getSimpleName(), body);
             Gson gson = new Gson();
             resultResponse result = (resultResponse) gson.fromJson(body, parseObject);
             result.setCode(resultCode);
@@ -45,9 +45,9 @@ public class responseCallback implements Callback {
                 mApiCallback.onSuccess(result);
             }
             long time = TimeUnit.MILLISECONDS.convert(System.nanoTime() - startTime, TimeUnit.NANOSECONDS);
-            Log.e(responseCallback.class.getSimpleName(), String.format("시간값 %d", time));
+            Log.e(OkHttp3ResponseCallback.class.getSimpleName(), String.format("시간값 %d", time));
         }catch (Exception e) {
-            Log.e(responseCallback.class.getSimpleName(), e.getMessage());
+            Log.e(OkHttp3ResponseCallback.class.getSimpleName(), e.getMessage());
             if(mApiCallback != null) {
                 Gson gson = new Gson();
                 errorResponse result = gson.fromJson(body, errorResponse.class);
