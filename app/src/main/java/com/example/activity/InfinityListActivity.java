@@ -66,7 +66,6 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
             @Override
             public void onRefresh() {
                 Log.e(TAG, String.format("onRefresh"));
-                refreshLayout.setRefreshing(false);
                 refreshList();
             }
         });
@@ -148,15 +147,22 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         recyclerView.setLoaded();
     }
 
-    public void cancelCaller() {
-        if(this.mCaller != null){
+    private void cancelCaller() {
+        if (this.mCaller != null) {
             this.mCaller.cancel();
             this.mCaller = null;
         }
     }
 
-    public void setCaller(Call<?> caller) {
+    private void setCaller(Call<?> caller) {
         this.mCaller = caller;
+    }
+
+    private void setRefresh() {
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.refresh_layout);
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     /**
@@ -183,11 +189,13 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
                                 setList(item.getData());
                             }
                         }
+                        setRefresh();
                     }
 
                     @Override
                     public void onFailure(Call<InfinityItem> call, Throwable t) {
                         Log.e(TAG, String.format("onFailure() %s", t.getMessage()));
+                        setRefresh();
                     }
                 }
         );
