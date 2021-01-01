@@ -5,14 +5,16 @@ import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
-import com.example.activity.menu.MenuAdapter
-import com.example.activity.menu.UIList.MenuItem
+import com.example.activity.collapsinglayout.TabPagerAdapter
 import com.example.test.myapplication.R
 import com.example.utils.Log
 import com.example.utils.util
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_collapsing_toolbar.*
 
 class CollapsingToolbarLayoutActivity : AppCompatActivity() {
@@ -26,14 +28,48 @@ class CollapsingToolbarLayoutActivity : AppCompatActivity() {
             Log.e(TAG, "setNavigationOnClickListener")
             finish()
         })
-        list.layoutManager = LinearLayoutManager(this)
-        val adapter = MenuAdapter(View.OnClickListener {
-            val item: MenuItem = it.tag as MenuItem
-            showSnackbar(item.title)
-        })
-        list.adapter = adapter;
-        this.initData()
+
         this.loadImage()
+
+        val viewPager = findViewById<ViewPager>(R.id.view_pager)
+        viewPager.adapter = TabPagerAdapter(supportFragmentManager)
+        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                changePager(position)
+            }
+        })
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        tabLayout.addOnTabSelectedListener( object: OnTabSelectedListener{
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.e(TAG,"onTabSelected")
+                var position = tab?.position ?: 0
+                changeTab(position)
+            }
+        })
+    }
+
+    private fun changePager(position: Int){
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        val tab = tabLayout.getTabAt(position)
+        tab?.select()
+    }
+
+    private fun changeTab(position: Int){
+        Log.e(TAG,String.format("changeTab() %d", position))
+        val viewPager = findViewById<ViewPager>(R.id.view_pager)
+        viewPager.setCurrentItem(position,false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,16 +84,6 @@ class CollapsingToolbarLayoutActivity : AppCompatActivity() {
             return true
         }
         return false
-    }
-
-    private fun initData() {
-        val data = ArrayList<MenuItem>();
-        for (i in 0..30) {
-            data.add(MenuItem(String.format("aaaa %d", i), null))
-        }
-        val adapter: MenuAdapter = list.adapter as MenuAdapter
-        adapter?.itemArray = data;
-        list.adapter?.notifyDataSetChanged()
     }
 
     private fun showSnackbar(message: String){
