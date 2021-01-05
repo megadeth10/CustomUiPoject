@@ -3,4 +3,6 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">
         com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
     </string>
+    <string name="man">남자</string>
+    <string name="women">여자</string>
 </resources>

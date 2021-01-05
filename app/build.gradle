@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -68,6 +69,14 @@ android {
             assets.srcDirs = ["src/debug/assets"]
         }
     }
+
+    // view, data binding
+    viewBinding {
+        enabled = true
+    }
+    dataBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -103,4 +112,7 @@ dependencies {
 
     // swiperefreshlayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //AAC
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 }
