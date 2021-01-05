@@ -1,4 +1,4 @@
-package com.example.test.aac
+package com.example.test.aac.viewbindingadapter
 
 import android.view.View
 import android.widget.TextView
