@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.activity.infinitylist.Retrofit2APIInterface;
 import com.example.activity.infinitylist.item.InfinityItem;
+import com.example.activity.infinitylist.item.Post;
 import com.example.custom.activity.ToolbarActivity;
 import com.example.custom.widget.listview.InfinityListView;
 import com.example.custom.widget.listview.adapter.InfinityAdapter;
@@ -53,7 +54,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         InfinityAdapter adapter = new InfinityAdapter(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InfinityItem.Post item = (InfinityItem.Post) view.getTag();
+                Post item = (Post) view.getTag();
                 showSnackBar(item.getTitle());
             }
         },
@@ -86,7 +87,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
             if (message.what == REQUEST_DATA) {
                 InfinityListView recyclerView = findViewById(R.id.list);
                 int count = ((InfinityAdapter) recyclerView.getAdapter()).getPageCount();
-                getDataList(0);
+                getDataList(count);
                 return true;
             }
             return false;
@@ -95,7 +96,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
 
     @Override
     public void onBind(@NonNull RecyclerView.ViewHolder holder, int position, List<?> data) {
-        InfinityItem.Post item = (InfinityItem.Post) data.get(position);
+        Post item = (Post) data.get(position);
         ((InfinityViewHolder) holder).tv.setText(item.getTitle());
         ((LinearLayout) ((InfinityViewHolder) holder).tv.getParent()).setTag(item);
     }
@@ -137,8 +138,8 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
         ((InfinityAdapter) recyclerView.getAdapter()).resetAdapter();
     }
 
-    private void setList(@NonNull List<InfinityItem.Post> list) {
-        List<InfinityItem.Post> data = list;
+    private void setList(@NonNull List<Post> list) {
+        List<Post> data = list;
         if (list == null || (list != null && list.size() == 0)) {
             data = new ArrayList<>(0);
         }
@@ -176,6 +177,21 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
     }
 
     private void getDataList(int pageNumber) {
+        List list = new ArrayList<Post>();
+        for (int i = 0; i < 20; i++) {
+            Post item = new Post();
+            item.setId(i);
+            item.setAuthor(String.format("bbbb %d-%d ", pageNumber, i));
+            item.setTitle(String.format("bbbb %d-%d", pageNumber, i));
+            list.add(item);
+        }
+        setList(list);
+    }
+
+    /**
+     * Rest API 호출용 함수
+     */
+    private void getDataList() {
         Call<InfinityItem> caller = Retrofit2NetworkLayer.INSTANCE.getInstance().create(Retrofit2APIInterface.class).getPosts();
         this.setCaller(caller);
         caller.enqueue(
