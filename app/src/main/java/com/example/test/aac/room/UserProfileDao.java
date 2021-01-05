@@ -2,6 +2,8 @@ package com.example.test.aac.room;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,5 +22,5 @@ public interface UserProfileDao {
     void delete(UserProfile user);
 
     @Query("SELECT * FROM UserProfile")
-    List<UserProfile> getAll();
+    LiveData<List<UserProfile>> getAll();
 }
