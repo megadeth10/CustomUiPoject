@@ -5,11 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.test.aac.data.UserProfile
 import com.example.test.aac.viewmodel.UserViewModel
 import com.example.test.myapplication.R
 import com.example.test.myapplication.databinding.ActivityUserProfileBinding

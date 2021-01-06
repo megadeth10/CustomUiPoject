@@ -10,7 +10,7 @@
 <!--            type="com.example.test.aac.EditUserProfileActivity" />-->
 <!--        <variable-->
 <!--            name="userProfile"-->
-<!--            type="com.example.test.aac.UserProfile" />-->
+<!--            type="com.example.test.aac.data.UserProfile" />-->
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

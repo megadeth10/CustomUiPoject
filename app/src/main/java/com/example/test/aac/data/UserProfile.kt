@@ -1,4 +1,4 @@
-package com.example.test.aac
+package com.example.test.aac.data
 
 data class UserProfile(
         val n:String = "없음",

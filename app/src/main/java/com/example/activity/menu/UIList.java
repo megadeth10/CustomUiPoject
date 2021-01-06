@@ -9,8 +9,6 @@ import com.example.activity.NestedScrollViewActivity;
 import com.example.activity.ScrollingViewBehaviorActivity;
 import com.example.activity.PagerActivity;
 import com.example.test.aac.AddUserProfileActivity;
-import com.example.test.aac.UserProfile;
-import com.example.test.aac.UserProfileActivity;
 import com.example.test.material.BottomNavigationActivity;
 
 import java.util.ArrayList;
