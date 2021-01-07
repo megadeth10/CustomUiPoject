@@ -9,6 +9,7 @@ import com.example.activity.NestedScrollViewActivity;
 import com.example.activity.ScrollingViewBehaviorActivity;
 import com.example.activity.PagerActivity;
 import com.example.test.aac.AddUserProfileActivity;
+import com.example.test.aac.FragmentBindingActivity;
 import com.example.test.material.BottomNavigationActivity;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class UIList {
             mList.add(new MenuItem("Fold List", FoldListActivity.class));
             mList.add(new MenuItem("NestedScrollView Activity", NestedScrollViewActivity.class));
             mList.add(new MenuItem("AAC Test Activity", AddUserProfileActivity.class));
+            mList.add(new MenuItem("AAC Test Fragment", FragmentBindingActivity.class));
         }
     }
 
