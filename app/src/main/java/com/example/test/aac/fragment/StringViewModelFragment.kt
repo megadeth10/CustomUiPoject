@@ -15,8 +15,8 @@ import com.example.utils.Log
 import java.lang.StringBuilder
 
 /**
- * TODO: Fragment에서 viewModel이 activity lifecycle을 보장하지 않음 무엇이 문제인가?
- * ViewModelProview에 lifecycleOwner가 activity로 할수 없나
+ * TODO: Fragment back stack과 관련하여 수정 fragment와 입력 fragment로
+ * ViewModel이 공유하도록 추가 테스트 필요하다.
  */
 class StringViewModelFragment : Fragment(){
     private var _binding: FragmentBidingBinding? = null
