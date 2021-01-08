@@ -18,12 +18,14 @@
             android:layout_height="wrap_content"
             android:text="fragment biding"
             app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/title">
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:viewBindingIgnore="true">
             <EditText
                 android:id="@+id/input"
                 android:layout_width="0dp"

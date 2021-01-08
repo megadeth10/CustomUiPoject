@@ -16,6 +16,7 @@ object Retrofit2NetworkLayer {
     private var instance: Retrofit? = null
     private const val CALL_TIME_OUT = 10L
     private const val CONNECT_TIME_OUT= 10L
+    // TODO: micro service를 위해 base Url이 다를때는 어떻게?
     fun getInstance(): Retrofit =
             instance ?: synchronized(this) {
                 val intercepterLevel = if(BuildConfig.DEBUG){
