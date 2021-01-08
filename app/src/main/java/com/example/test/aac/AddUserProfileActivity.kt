@@ -11,6 +11,7 @@ import androidx.room.Room
 import com.example.test.aac.room.UserProfile
 import com.example.test.aac.room.UserProfileDatabase
 import com.example.test.aac.viewmodel.UserDaoViewModel
+import com.example.test.aac.viewmodel.UserDaoViewModelFactory
 import com.example.test.myapplication.R
 import com.example.test.myapplication.databinding.ActivityAddUserBinding
 import com.example.utils.Log
@@ -32,7 +33,9 @@ class AddUserProfileActivity : AppCompatActivity() {
      * Room + ViewModel + LiveData
      */
     fun dbViewModel(){
-        daoViewModel = ViewModelProvider(this).get(UserDaoViewModel::class.java)
+        // androidx.lifecycle:lifecycle-extensions 지원중단이 되어 ViewModelProvider.factory를 사용한다.
+        //
+        daoViewModel = ViewModelProvider(this, UserDaoViewModelFactory(application)).get(UserDaoViewModel::class.java)
         daoViewModel.userProfileList.observe(this, Observer {
             var str = StringBuilder("사용자목록\n")
             it.forEach {
