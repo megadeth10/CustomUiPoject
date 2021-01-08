@@ -46,7 +46,7 @@ class UserProfileActivity: AppCompatActivity(){
                     var address = data?.extras?.getString("address")
                     var phone = data?.extras?.getString("phone")
                     Log.e("onActivityResult", String.format("name: %s address: %s", name, address))
-                    var profile = model.userProfile.value
+                    var profile:UserProfile = model.userProfile.value!!
                     if (name != null) {
                         profile?.name = name
                     }
@@ -56,7 +56,7 @@ class UserProfileActivity: AppCompatActivity(){
                     if (phone != null) {
                         profile?.phone = phone
                     }
-                    model.userProfile.value = profile
+                    model.setUserProfile(profile)
                 }
             }
         }
@@ -74,7 +74,7 @@ class UserProfileActivity: AppCompatActivity(){
         userData.name = "가가가가"
         userData.phone = "010-1111-2222"
 
-        model.userProfile.value = userData
+        model.setUserProfile(userData)
     }
 
     fun editProfile(view: View){
