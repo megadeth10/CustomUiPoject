@@ -71,12 +71,18 @@ android {
     }
 
     // view, data binding
-    viewBinding {
-        enabled = true
+    // android studio < 4.0
+//    viewBinding {
+//        enabled = true
+//    }
+//    dataBinding{
+//        enabled = true
+//    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
-    dataBinding{
-        enabled = true
-    }
+
 }
 
 dependencies {
