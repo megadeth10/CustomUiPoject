@@ -21,9 +21,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     private View.OnClickListener mOnClickListener;
     private iRecycleViewAdapterCallback<MenuViewHolder> mBinderCallback;
 
+    public MenuAdapter(){
+        this.mOnClickListener = null;
+    }
+
     public MenuAdapter(View.OnClickListener listener) {
         this.mOnClickListener = listener;
     }
+
 
     public ArrayList<?> getItemArray() {
         return mItemArray;

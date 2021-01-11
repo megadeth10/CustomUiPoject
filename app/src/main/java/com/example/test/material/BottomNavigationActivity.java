@@ -26,7 +26,7 @@ public class BottomNavigationActivity extends ToolbarActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = BottomNavigationActivity.class.getSimpleName();
-        this.mToolBar.setTitle("Bottom Navigation");
+        this.getToolBar().setTitle("Bottom Navigation");
 
         setContentsLayout(R.layout.layout_bottom_navigation);
 

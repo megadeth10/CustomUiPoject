@@ -22,10 +22,10 @@ public class PagerActivity extends ToolbarActivity implements Toolbar.OnMenuItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = PagerActivity.class.getSimpleName();
-        this.mToolBar.setTitle("Infinity Pager View");
-        this.mToolBar.inflateMenu(R.menu.menu_pager);
-        this.mToolBar.setOnMenuItemClickListener(this);
-        View view = View.inflate(this, R.layout.view_toolbar_button, this.mToolBar);
+        this.getToolBar().setTitle("Infinity Pager View");
+        this.getToolBar().inflateMenu(R.menu.menu_pager);
+        this.getToolBar().setOnMenuItemClickListener(this);
+        View view = View.inflate(this, R.layout.view_toolbar_button, getToolBar());
         view.findViewById(R.id.toolbar_btn1).setOnClickListener(this);
         view.findViewById(R.id.toolbar_btn2).setOnClickListener(this);
 

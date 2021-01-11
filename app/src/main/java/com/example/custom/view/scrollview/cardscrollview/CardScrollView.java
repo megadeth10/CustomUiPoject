@@ -115,6 +115,9 @@ public class CardScrollView extends HorizontalScrollView {
         this.mIChangeScroll = changeScroll;
     }
 
+    public void setImage(ArrayList<CardItem> list) {
+        this.setImage(list, this.mIChangeScroll, this.mOnClickListener);
+    }
     /**
      * imageSetting
      * @param list

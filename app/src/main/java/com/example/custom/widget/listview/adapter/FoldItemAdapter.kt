@@ -22,7 +22,7 @@ class FoldItemAdapter<T:FoldViewHolder, V: FoldItem>: BaseAdapter<T, V>(), View.
     }
 
     override fun addItem(list: ArrayList<V>) {
-        this.addItem(list)
+        super.addItem(list)
     }
 
     override fun onBindViewHolder(holder: T, position: Int) {

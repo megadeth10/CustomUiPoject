@@ -17,7 +17,7 @@ public class MaterialButtonActivity extends ToolbarActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         this.TAG = MaterialButtonActivity.class.getSimpleName();
 
-        this.mToolBar.setTitle("Material Button");
+        this.getToolBar().setTitle("Material Button");
 //        setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

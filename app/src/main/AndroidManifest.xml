@@ -32,7 +32,8 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.activity.FoldListActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:screenOrientation="sensor" />
         <activity
             android:name="com.example.activity.ScrollingViewBehaviorActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
@@ -48,7 +49,8 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.activity.CardScrollActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:screenOrientation="sensor" />
         <activity
             android:name="com.example.activity.MaterialButtonActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />

@@ -20,8 +20,8 @@ public class UIList {
 
     public UIList(){
         if(mList.size() == 0){
-            mList.add(new MenuItem("PagerView", PagerActivity.class));
-            mList.add(new MenuItem("Button List", MaterialButtonActivity.class));
+            mList.add(new MenuItem("Infinity Pager View", PagerActivity.class));
+            mList.add(new MenuItem("Material Button List", MaterialButtonActivity.class));
             mList.add(new MenuItem("Card Horizontal ScrollView", CardScrollActivity.class));
             mList.add(new MenuItem("Bottom Navigation Activity", BottomNavigationActivity.class));
             mList.add(new MenuItem("Infinity List", InfinityListActivity.class));

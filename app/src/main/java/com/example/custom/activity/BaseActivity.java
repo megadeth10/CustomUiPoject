@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
-    protected String TAG = ToolbarActivity.class.getSimpleName();
+    protected String TAG = BaseActivity.class.getSimpleName();
     protected Snackbar mSnackBar;
     protected Context mContext;
 
@@ -33,12 +33,6 @@ public class BaseActivity extends AppCompatActivity {
             this.mSnackBar = null;
         }
         super.onDestroy();
-    }
-
-
-    protected View setContentsLayout(int resource){
-        ViewGroup viewGroup = findViewById(R.id.content_view);
-        return View.inflate(this, resource, viewGroup);
     }
 
     protected void showSnackBar(String message){

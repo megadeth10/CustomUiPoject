@@ -25,7 +25,7 @@ class NestedScrollViewActivity: ToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.TAG = NestedScrollViewActivity::class.simpleName
-        this.mToolBar.title = "NestedScrollView Activity"
+        this.toolBar.title = "NestedScrollView Activity"
 
         setContentsLayout(R.layout.layout_nested_scroll_view)
         val imageView = findViewById<ImageView>(R.id.image)
@@ -36,10 +36,9 @@ class NestedScrollViewActivity: ToolbarActivity() {
 
         val list = findViewById<RecyclerView>(R.id.list)
         list.layoutManager = LinearLayoutManager(this)
-        val adapter = MenuAdapter(View.OnClickListener {
-        })
+        val adapter = MenuAdapter()
         list.adapter = adapter;
-        adapter?.itemArray = getList();
+        adapter.itemArray = getList();
         list.adapter?.notifyDataSetChanged()
 
 //        val list = findViewById<ListView>(R.id.list)

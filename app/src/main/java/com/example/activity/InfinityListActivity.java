@@ -18,6 +18,7 @@ import com.example.custom.widget.listview.adapter.InfinityAdapter;
 import com.example.custom.widget.listview.callback.iInfinityListCallback;
 import com.example.network.retrofit2.Retrofit2NetworkLayer;
 import com.example.test.myapplication.R;
+import com.example.test.myapplication.databinding.ViewToolbarButtonBinding;
 import com.example.utils.Log;
 
 import java.util.ArrayList;
@@ -38,10 +39,14 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = InfinityListActivity.class.getSimpleName();
-        this.mToolBar.setTitle("Infinity List");
-        View view = View.inflate(this, R.layout.view_toolbar_button, this.mToolBar);
-        view.findViewById(R.id.toolbar_btn1).setOnClickListener(this);
-        view.findViewById(R.id.toolbar_btn2).setVisibility(View.GONE);
+        this.binding.toolbar.setTitle("Infinity List");
+        ViewToolbarButtonBinding toolbarBinding = ViewToolbarButtonBinding.inflate(getLayoutInflater());
+        this.binding.toolbar.addView(toolbarBinding.getRoot());
+        toolbarBinding.toolbarBtn1.setOnClickListener(this);
+        toolbarBinding.toolbarBtn2.setVisibility(View.GONE);
+//        View view = View.inflate(this, R.layout.view_toolbar_button, this.binding.toolbar);
+//        view.findViewById(R.id.toolbar_btn1).setOnClickListener(this);
+//        view.findViewById(R.id.toolbar_btn2).setVisibility(View.GONE);
 
         setContentsLayout(R.layout.layout_infinity_list);
         InfinityListView recyclerView = findViewById(R.id.list);
