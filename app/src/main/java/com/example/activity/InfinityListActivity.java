@@ -136,6 +136,7 @@ public class InfinityListActivity extends ToolbarActivity implements iInfinityLi
     private void refreshList() {
         this.resetList();
         this.getDataList(0);
+        this.setRefresh();
     }
 
     private void resetList() {
