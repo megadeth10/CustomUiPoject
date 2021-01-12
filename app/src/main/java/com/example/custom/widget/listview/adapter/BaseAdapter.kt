@@ -8,7 +8,7 @@ import com.example.utils.Log
 import java.lang.Exception
 
 open class BaseAdapter<T : RecyclerView.ViewHolder, V> : RecyclerView.Adapter<T>() {
-    var TAG = BaseAdapter::class.simpleName
+    protected var TAG = BaseAdapter::class.simpleName
     private val itemArray: ArrayList<V> = ArrayList()
     lateinit var clickListener: View.OnClickListener
     lateinit var recycleViewAdapterCallback: iRecycleViewAdapterCallback<T>
@@ -17,8 +17,7 @@ open class BaseAdapter<T : RecyclerView.ViewHolder, V> : RecyclerView.Adapter<T>
 
     open fun setItemArray(list: ArrayList<V>) {
         this.itemArray.clear()
-        this.itemArray.addAll(list)
-        notifyDataSetChanged()
+        this.addItem(list)
     }
 
     open fun addItem(list: ArrayList<V>) {
