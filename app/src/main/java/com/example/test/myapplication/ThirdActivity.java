@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -71,11 +73,16 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
 
+
+        final EditText inputEt = findViewById(R.id.encryptInput);
         Button secureEncryptBtn = findViewById(R.id.secureEncryptBtn);
         secureEncryptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new secure().set(ctx, key, "abc");
+                String text = inputEt.getText().toString();
+                if(!TextUtils.isEmpty(text)) {
+                    new secure().set(ctx, key, text);
+                }
             }
         });
 
