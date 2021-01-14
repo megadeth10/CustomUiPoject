@@ -44,6 +44,7 @@ public class PostInfinityListActivity extends ToolbarActivity implements View.On
     private PostViewModel postViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         this.TAG = PostInfinityListActivity.class.getSimpleName();
         this.setToolbar();
@@ -81,7 +82,7 @@ public class PostInfinityListActivity extends ToolbarActivity implements View.On
     private void setContentBind(){
         contentBinding = LayoutInfinityListBinding.inflate(getLayoutInflater());
         contentBinding.setLifecycleOwner(this);
-        postViewModel = new PostViewModel();
+//        postViewModel = new PostViewModel();
         contentBinding.setViewModel(postViewModel);
         this.setContentsViewBinding(contentBinding);
     }

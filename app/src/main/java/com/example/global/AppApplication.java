@@ -3,6 +3,7 @@ package com.example.global;
 import android.app.Application;
 
 import com.example.infinitylist.module.PostApiNetworkModuleKt;
+import com.example.infinitylist.module.PostViewModelModuleKt;
 import com.example.kointest.KoinModuleKt;
 import com.example.network.retrofit2.koin.NetworkModuleKt;
 import com.example.test.myapplication.BuildConfig;
@@ -27,6 +28,7 @@ public class AppApplication extends Application {
         modules.add(KoinModuleKt.getAppModule());
         modules.add(PostApiNetworkModuleKt.getPostApiModule());
         modules.add(NetworkModuleKt.getNetworkModule());
+        modules.add(PostViewModelModuleKt.getPostViewModelModule());
         KoinApplication koin = KoinAndroidApplication.create(this)
                 .modules(modules);
         startKoin(GlobalContext.INSTANCE, koin);

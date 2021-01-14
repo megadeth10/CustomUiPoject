@@ -133,6 +133,10 @@ dependencies {
     //kapt(Annotation Processing for kotlin)
     kapt 'androidx.room:room-compiler:2.2.6'
 
+    // Koin for Kotlin apps
+    implementation "org.koin:koin-core:$koin_version"
     // Koin for Android
     implementation "org.koin:koin-android:$koin_version"
+    // Koin for Android ViewModel
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }
