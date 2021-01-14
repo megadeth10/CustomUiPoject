@@ -25,7 +25,8 @@ public class AppApplication extends Application {
         super.onCreate();
         List<Module> modules = new ArrayList<>(0);
         modules.add(KoinModuleKt.getAppModule());
-
+        modules.add(PostApiNetworkModuleKt.getPostApiModule());
+        modules.add(NetworkModuleKt.getNetworkModule());
         KoinApplication koin = KoinAndroidApplication.create(this)
                 .modules(modules);
         startKoin(GlobalContext.INSTANCE, koin);

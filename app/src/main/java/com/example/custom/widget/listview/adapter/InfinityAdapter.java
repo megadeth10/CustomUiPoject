@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import com.example.custom.widget.listview.callback.iInfinityListCallback;
 import com.example.test.myapplication.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +17,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
+ * InfinityAdapter Class
+ * 무한 RecyclerView 어뎁터용
  *
- * @param <T>
+ * @param <T> list Item Class
+ *            TODO: ViewModel에 observe가 update로 전달 하는 data가 list 전체이기 때문에 이 부분에 오류가 생김
  */
-public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private String TAG = InfinityAdapter.class.getSimpleName();
+abstract public class InfinityAdapter<T>
+        extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+        implements iInfinityListCallback {
+    protected String TAG = InfinityAdapter.class.getSimpleName();
+
     private enum VIEW_TYPE {
         VIEW_ITEM(0),
         VIEW_PROGRESS(1);
@@ -30,14 +37,13 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
             this.value = value;
         }
 
-        public int getValue(){
+        public int getValue() {
             return this.value;
         }
     }
 
     private List<T> mItemArray = new ArrayList<T>();
     private View.OnClickListener mOnClickListener;
-    private iInfinityListCallback iInfinityListCallback;
     // page의 끝을 체크
     private boolean isLastItem = false;
     // page 번호
@@ -45,12 +51,12 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
     // page 당 item 갯수
     private int pagePerCount = 10;
 
-    public InfinityAdapter(View.OnClickListener listener, iInfinityListCallback callback) {
-        this.init(listener, callback, 10);
+    public InfinityAdapter(View.OnClickListener listener) {
+        this.init(listener, 10);
     }
 
-    public InfinityAdapter(View.OnClickListener listener, iInfinityListCallback callback, int pagePerCount) {
-        this.init(listener, callback, pagePerCount);
+    public InfinityAdapter(View.OnClickListener listener, int pagePerCount) {
+        this.init(listener, pagePerCount);
     }
 
     @Override
@@ -58,19 +64,17 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
         super.finalize();
         this.mItemArray = null;
         this.mOnClickListener = null;
-        this.iInfinityListCallback = null;
         this.TAG = null;
     }
 
     /**
      * 클래스 맴버변수 초기화 함수
+     *
      * @param listener
-     * @param callback
      * @param pagePerCount
      */
-    private void init(View.OnClickListener listener, iInfinityListCallback callback, int pagePerCount){
+    private void init(View.OnClickListener listener, int pagePerCount) {
         this.mOnClickListener = listener;
-        this.iInfinityListCallback = callback;
         this.mItemArray = new ArrayList<>(0);
         this.mItemArray.add(null);
         this.pagePerCount = pagePerCount;
@@ -81,8 +85,8 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
     /**
      * 리스트 초기화용
      */
-    public void resetAdapter(){
-        this.init(this.mOnClickListener, this.iInfinityListCallback, this.pagePerCount);
+    public void resetAdapter() {
+        this.init(this.mOnClickListener, this.pagePerCount);
         notifyDataSetChanged();
     }
 
@@ -93,19 +97,26 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
         return mItemArray;
     }
 
-    public void setItemArray(List<T> itemArray) {
+    public void setItemArray(ArrayList<T> itemArray) {
         int itemSize = itemArray.size();
-        int currentSize = this.mItemArray.size();
-        this.mItemArray.remove(currentSize - 1);
-        if(itemSize > 0) {
+        if (itemSize > 0) {
             pageCount++;
-            this.mItemArray.addAll(itemArray);
-            this.mItemArray.add(null);
-            this.isLastItem = itemSize < pagePerCount;
+            ArrayList<T> cloneObject = (ArrayList<T>) itemArray.clone();
+            cloneObject.add(null);
+            this.mItemArray = cloneObject;
+            this.isLastItem = false;
         } else {
+            int currentItemSize = this.getItemCount();
+            if (currentItemSize > 0) {
+                T item = this.mItemArray.get(currentItemSize - 1);
+                if (item == null) {
+                    this.mItemArray.remove(currentItemSize - 1);
+                }
+            }
             this.isLastItem = true;
         }
-        Log.e(TAG,String.format("setItemArray() isLastItem: %s", this.isLastItem));
+        Log.e(TAG, String.format("setItemArray() isLastItem: %s", this.isLastItem));
+        Log.e(TAG, String.format("setItemArray() size: %s", this.mItemArray.size()));
         notifyDataSetChanged();
     }
 
@@ -125,11 +136,20 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
         isLastItem = lastItem;
     }
 
+    public View.OnClickListener getOnClickListener() {
+        return mOnClickListener;
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.mOnClickListener = onClickListener;
+    }
+
     /**
      * Loading Footer Progress View Holder
      */
-    private class ProgressViewHolder extends RecyclerView.ViewHolder{
+    private class ProgressViewHolder extends RecyclerView.ViewHolder {
         ProgressBar progressBar;
+
         public ProgressViewHolder(@NonNull View itemView) {
             super(itemView);
             progressBar = itemView.findViewById(R.id.progress);
@@ -139,21 +159,21 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType == VIEW_TYPE.VIEW_PROGRESS.getValue()){
+        if (viewType == VIEW_TYPE.VIEW_PROGRESS.getValue()) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.view_list_footer_progress, parent, false);
             ProgressViewHolder viewHolder = new ProgressViewHolder(view);
             return viewHolder;
         }
-        return this.iInfinityListCallback.createView(parent, viewType, this.mOnClickListener);
+        return this.createView(parent, viewType, this.mOnClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(!this.isLastItem && (getItemCount() - 1 == position)){
+        if (getItemViewType(position) == VIEW_TYPE.VIEW_PROGRESS.getValue()) {
             return;
         }
-        this.iInfinityListCallback.onBind(holder, position, this.mItemArray);
+        this.onBind(holder, position, this.mItemArray);
     }
 
     @Override
@@ -166,12 +186,13 @@ public class InfinityAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        VIEW_TYPE type = VIEW_TYPE.VIEW_ITEM;
-        if (this.isLastItem){
-            return type.getValue();
+//        if (this.isLastItem){
+//            return VIEW_TYPE.VIEW_ITEM.getValue();
+//        }
+        T item = this.mItemArray.get(position);
+        if (item == null) {
+            return VIEW_TYPE.VIEW_PROGRESS.getValue();
         }
-        int sizeToIndex = this.getItemCount() - 1;
-        type = sizeToIndex == position ? VIEW_TYPE.VIEW_PROGRESS : VIEW_TYPE.VIEW_ITEM;
-        return type.getValue();
+        return VIEW_TYPE.VIEW_ITEM.getValue();
     }
 }

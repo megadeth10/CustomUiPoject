@@ -1,4 +1,4 @@
-package com.example.activity.infinitylist.item;
+package com.example.infinitylist.data;
 
 import com.google.gson.annotations.SerializedName;
 

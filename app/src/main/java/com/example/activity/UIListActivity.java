@@ -4,22 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import kotlin.Lazy;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.activity.menu.MenuAdapter;
 import com.example.activity.menu.UIList;
+import com.example.kointest.KoinPresenter;
 import com.example.test.myapplication.R;
+
+import static org.koin.java.KoinJavaComponent.inject;
 
 public class UIListActivity extends AppCompatActivity {
     private UIList mListData = new UIList();
-
+    private Lazy<KoinPresenter> koinPresenter = inject(KoinPresenter.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_u_i);
+
+        TextView tv = findViewById(R.id.koinText);
+        tv.setText(koinPresenter.getValue().sayHello());
 
         RecyclerView recyclerView = findViewById(R.id.ui_list);
         recyclerView.setHasFixedSize(true);

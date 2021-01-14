@@ -42,7 +42,7 @@
             android:name="com.example.activity.CollapsingToolbarLayoutActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.activity.InfinityListActivity"
+            android:name="com.example.infinitylist.PostInfinityListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.test.material.BottomNavigationActivity"
