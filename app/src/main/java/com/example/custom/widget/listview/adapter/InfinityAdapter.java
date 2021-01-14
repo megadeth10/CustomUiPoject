@@ -44,19 +44,10 @@ abstract public class InfinityAdapter<T>
 
     private List<T> mItemArray = new ArrayList<T>();
     private View.OnClickListener mOnClickListener;
-    // page의 끝을 체크
-    private boolean isLastItem = false;
-    // page 번호
-    private int pageCount = 0;
-    // page 당 item 갯수
-    private int pagePerCount = 10;
+    private boolean showProgress = true;
 
     public InfinityAdapter(View.OnClickListener listener) {
-        this.init(listener, 10);
-    }
-
-    public InfinityAdapter(View.OnClickListener listener, int pagePerCount) {
-        this.init(listener, pagePerCount);
+        this.init(listener);
     }
 
     @Override
@@ -71,69 +62,43 @@ abstract public class InfinityAdapter<T>
      * 클래스 맴버변수 초기화 함수
      *
      * @param listener
-     * @param pagePerCount
      */
-    private void init(View.OnClickListener listener, int pagePerCount) {
+    private void init(View.OnClickListener listener) {
         this.mOnClickListener = listener;
         this.mItemArray = new ArrayList<>(0);
         this.mItemArray.add(null);
-        this.pagePerCount = pagePerCount;
-        this.pageCount = 0;
-        this.isLastItem = false;
+        this.showProgress = false;
     }
 
-    /**
-     * 리스트 초기화용
-     */
     public void resetAdapter() {
-        this.init(this.mOnClickListener, this.pagePerCount);
+        this.init(this.mOnClickListener);
         notifyDataSetChanged();
     }
 
     /**
-     * Getter & Setter
+     * getter & setter
      */
+
     public List<T> getItemArray() {
         return mItemArray;
     }
 
+    public boolean isShowProgress() {
+        return showProgress;
+    }
+
+    public void setShowProgress(boolean showProgress) {
+        this.showProgress = showProgress;
+    }
+
     public void setItemArray(ArrayList<T> itemArray) {
-        int itemSize = itemArray.size();
-        if (itemSize > 0) {
-            pageCount++;
-            ArrayList<T> cloneObject = (ArrayList<T>) itemArray.clone();
+        ArrayList<T> cloneObject = (ArrayList<T>) itemArray.clone();
+        if (this.showProgress) {
             cloneObject.add(null);
-            this.mItemArray = cloneObject;
-            this.isLastItem = false;
-        } else {
-            int currentItemSize = this.getItemCount();
-            if (currentItemSize > 0) {
-                T item = this.mItemArray.get(currentItemSize - 1);
-                if (item == null) {
-                    this.mItemArray.remove(currentItemSize - 1);
-                }
-            }
-            this.isLastItem = true;
         }
-        Log.e(TAG, String.format("setItemArray() isLastItem: %s", this.isLastItem));
+        this.mItemArray = cloneObject;
         Log.e(TAG, String.format("setItemArray() size: %s", this.mItemArray.size()));
         notifyDataSetChanged();
-    }
-
-    public int getPageCount() {
-        return pageCount;
-    }
-
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
-    }
-
-    public boolean isLastItem() {
-        return isLastItem;
-    }
-
-    public void setLastItem(boolean lastItem) {
-        isLastItem = lastItem;
     }
 
     public View.OnClickListener getOnClickListener() {
