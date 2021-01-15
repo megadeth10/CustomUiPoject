@@ -139,4 +139,7 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     // Koin for Android ViewModel
     implementation "org.koin:koin-android-viewmodel:$koin_version"
+
+    // For Kotlin use paging-runtime-ktx
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }

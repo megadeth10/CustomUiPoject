@@ -8,6 +8,7 @@ import com.example.activity.CollapsingToolbarLayoutActivity;
 import com.example.activity.NestedScrollViewActivity;
 import com.example.activity.ScrollingViewBehaviorActivity;
 import com.example.activity.PagerActivity;
+import com.example.pagedlist.PostPagedListActivity;
 import com.example.test.aac.AddUserProfileActivity;
 import com.example.test.aac.FragmentBindingActivity;
 import com.example.test.databinding.DataBindingActivity;
@@ -32,6 +33,7 @@ public class UIList {
             mList.add(new MenuItem("AAC Test Activity", AddUserProfileActivity.class));
             mList.add(new MenuItem("AAC Test Fragment", FragmentBindingActivity.class));
             mList.add(new MenuItem("DataBinding Activity", DataBindingActivity.class));
+            mList.add(new MenuItem("Paged List Activity", PostPagedListActivity.class));
         }
     }
 

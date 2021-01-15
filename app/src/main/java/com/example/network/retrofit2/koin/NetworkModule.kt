@@ -15,7 +15,7 @@ private const val BASE_URL = "http://10.0.2.2:3000" // android emulator는 local
 
 private fun getInterceptor(): HttpLoggingInterceptor{
     val intercepterLevel = if(BuildConfig.DEBUG){
-        HttpLoggingInterceptor.Level.BODY
+        HttpLoggingInterceptor.Level.NONE
     } else {
         HttpLoggingInterceptor.Level.NONE
     }
