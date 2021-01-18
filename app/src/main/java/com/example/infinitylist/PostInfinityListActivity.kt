@@ -37,7 +37,7 @@ class PostInfinityListActivity : ToolbarActivity(), View.OnClickListener {
     private val postViewModel: PostViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.TAG = PostInfinityListActivity::class.java.simpleName
+        TAG = PostInfinityListActivity::class.java.simpleName
         setToolbar()
         setContentBind()
         setInitView()

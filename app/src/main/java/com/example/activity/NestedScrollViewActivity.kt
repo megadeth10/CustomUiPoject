@@ -24,7 +24,7 @@ class NestedScrollViewActivity: ToolbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.TAG = NestedScrollViewActivity::class.simpleName
+        TAG = NestedScrollViewActivity::class.simpleName
         this.toolBar.title = "NestedScrollView Activity"
 
         setContentsLayout(R.layout.layout_nested_scroll_view)

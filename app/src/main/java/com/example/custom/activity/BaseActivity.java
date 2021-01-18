@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
-    protected String TAG = BaseActivity.class.getSimpleName();
+    protected static String TAG = BaseActivity.class.getSimpleName();
     protected Snackbar mSnackBar;
     protected Context mContext;
 

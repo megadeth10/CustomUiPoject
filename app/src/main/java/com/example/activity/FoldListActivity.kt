@@ -35,7 +35,7 @@ class FoldListActivity : ToolbarActivity(), View.OnClickListener, iFoldRecycleVi
     lateinit var horizontalItemViewModel: HorizontalViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.TAG = FoldListActivity::class.simpleName
+        TAG = FoldListActivity::class.simpleName
         this.setToolBar()
         this.setContentBinding()
     }
