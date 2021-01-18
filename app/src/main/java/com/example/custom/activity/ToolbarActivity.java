@@ -19,7 +19,7 @@ public class ToolbarActivity extends DialogActivity{
         super.onCreate(savedInstanceState);
         this.mContext = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_base);
-
+        binding.setLifecycleOwner(this);
         setActionBar(binding.toolbar);
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
