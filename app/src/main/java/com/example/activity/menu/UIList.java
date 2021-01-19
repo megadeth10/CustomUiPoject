@@ -8,7 +8,9 @@ import com.example.activity.CollapsingToolbarLayoutActivity;
 import com.example.activity.NestedScrollViewActivity;
 import com.example.activity.ScrollingViewBehaviorActivity;
 import com.example.activity.PagerActivity;
+import com.example.infinitylistwithrxjava.PostListWithRxjavaActivity;
 import com.example.pagedlist.PostPagedListActivity;
+import com.example.rxjava.RxjavaSampleActivity;
 import com.example.test.aac.AddUserProfileActivity;
 import com.example.test.aac.FragmentBindingActivity;
 import com.example.test.databinding.DataBindingActivity;
@@ -21,6 +23,12 @@ public class UIList {
 
     public UIList(){
         if(mList.size() == 0){
+            mList.add(new MenuItem("Infinity List with Rxjava", PostListWithRxjavaActivity.class));
+            mList.add(new MenuItem("Rxjava test Activity", RxjavaSampleActivity.class));
+            mList.add(new MenuItem("Paged List Activity", PostPagedListActivity.class));
+            mList.add(new MenuItem("AAC Test Activity", AddUserProfileActivity.class));
+            mList.add(new MenuItem("AAC Test Fragment", FragmentBindingActivity.class));
+            mList.add(new MenuItem("DataBinding Activity", DataBindingActivity.class));
             mList.add(new MenuItem("Infinity Pager View", PagerActivity.class));
             mList.add(new MenuItem("Material Button List", MaterialButtonActivity.class));
             mList.add(new MenuItem("Card Horizontal ScrollView", CardScrollActivity.class));
@@ -30,10 +38,6 @@ public class UIList {
             mList.add(new MenuItem("ScrollingViewBehavior", ScrollingViewBehaviorActivity.class));
             mList.add(new MenuItem("Fold List", FoldListActivity.class));
             mList.add(new MenuItem("NestedScrollView Activity", NestedScrollViewActivity.class));
-            mList.add(new MenuItem("AAC Test Activity", AddUserProfileActivity.class));
-            mList.add(new MenuItem("AAC Test Fragment", FragmentBindingActivity.class));
-            mList.add(new MenuItem("DataBinding Activity", DataBindingActivity.class));
-            mList.add(new MenuItem("Paged List Activity", PostPagedListActivity.class));
         }
     }
 

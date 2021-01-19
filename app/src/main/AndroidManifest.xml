@@ -13,6 +13,12 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
         android:networkSecurityConfig="@xml/network_security_config">
+        <activity android:name="com.example.infinitylistwithrxjava.PostListWithRxjavaActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:screenOrientation="sensor"/>
+        <activity android:name="com.example.rxjava.RxjavaSampleActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:screenOrientation="sensor"/>
         <activity android:name="com.example.pagedlist.PostPagedListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>
