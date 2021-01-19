@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.example.infinitylist.module.PostApiNetworkModuleKt;
 import com.example.infinitylist.module.PostViewModelModuleKt;
+import com.example.infinitylistwithrxjava.module.PostRxJavaApiNetworkModuleKt;
+import com.example.infinitylistwithrxjava.module.PostRxJavaViewModelModuleKt;
+import com.example.infinitylistwithrxjava.viewmodel.PostRxJavaViewModel;
 import com.example.kointest.KoinModuleKt;
 import com.example.network.retrofit2.koin.NetworkModuleKt;
 import com.example.pagedlist.module.PostDataSourceModuleKt;
@@ -31,6 +34,8 @@ public class AppApplication extends Application {
         modules.add(NetworkModuleKt.getNetworkModule());
         modules.add(PostViewModelModuleKt.getPostViewModelModule());
         modules.add(PostDataSourceModuleKt.getPostDataSourceModule());
+        modules.add(PostRxJavaApiNetworkModuleKt.getPostRxJavaApiModule());
+        modules.add(PostRxJavaViewModelModuleKt.getPostRxJavaViewModelModule());
         KoinApplication koin = KoinAndroidApplication.create(this)
                 .modules(modules);
         startKoin(GlobalContext.INSTANCE, koin);
