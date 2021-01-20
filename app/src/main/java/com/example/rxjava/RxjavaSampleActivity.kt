@@ -22,6 +22,7 @@ import io.reactivex.rxjava3.observers.DefaultObserver
 import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.schedulers.Schedulers.single
+import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.coroutines.DisposableHandle
 import org.koin.core.qualifier.named
 import org.koin.java.KoinJavaComponent
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * TODO 2개의 서로 다른 thread로 처리한 결과를 listen하고 있다가 2개가 다 처리 되면 수행하는 기능 만들어 보기
+ * solve: PublicSubject로 구현 가능을 확인함.
  */
 class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
     lateinit var contentBinding: ActivityRxjavaTestBinding
@@ -152,16 +154,15 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
         val BtnObserver = Observable.combineLatest(
                 idObserver,
                 passwordObserver,
-                object : BiFunction<CharSequence, CharSequence, inputObject> {
-                    override fun apply(t1: CharSequence?, t2: CharSequence?): inputObject? {
+                object : BiFunction<CharSequence, CharSequence, JoinObject> {
+                    override fun apply(t1: CharSequence?, t2: CharSequence?): JoinObject? {
                         if (!t1.isNullOrEmpty() && !t2.isNullOrEmpty()) {
-                            return inputObject(t1, t2)
+                            return JoinObject(t1, t2)
                         }
                         return null
                     }
                 })
-//        val BtnObserver = Observable.merge(idObserver, passwordObserver)
-        BtnObserver.subscribe(object : Observer<inputObject> {
+        BtnObserver.subscribe(object : Observer<JoinObject> {
             override fun onSubscribe(d: Disposable?) {
                 disposable.add(d)
             }
@@ -170,7 +171,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
 
             }
 
-            override fun onNext(t: inputObject?) {
+            override fun onNext(t: JoinObject?) {
                 Log.e(TAG, "BtnObserver onNext() $t")
                 var state = false
                 if (t != null) {
@@ -183,9 +184,81 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
 
             }
         })
+
+        val aSwitchObserverable = PublishSubject.create<Boolean>()
+        val bSwitchObserverable = PublishSubject.create<Boolean>()
+        aSwitchObserverable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<Boolean>{
+                    override fun onComplete() {
+                        Log.e(TAG, "aSwitch onComplete()")
+                    }
+
+                    override fun onSubscribe(d: Disposable?) {
+                        disposable.add(d)
+                    }
+
+                    override fun onNext(t: Boolean?) {
+                        Log.e(TAG, "aSwitch onNext() $t")
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        Log.e(TAG, "aSwitch error() ${e?.message}")
+                    }
+                })
+        bSwitchObserverable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<Boolean>{
+                    override fun onComplete() {
+                        Log.e(TAG, "bSwitch onComplete()")
+                    }
+
+                    override fun onSubscribe(d: Disposable?) {
+                        disposable.add(d)
+                    }
+
+                    override fun onNext(t: Boolean?) {
+                        Log.e(TAG, "bSwitch onNext() $t")
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        Log.e(TAG, "bSwitch error() ${e?.message}")
+                    }
+                })
+        this.contentBinding.aSwitch.setOnCheckedChangeListener { compoundButton, b -> aSwitchObserverable.onNext(b) }
+        this.contentBinding.bSwitch.setOnCheckedChangeListener { compoundButton, b -> bSwitchObserverable.onNext(b) }
+        val combineSwitch = PublishSubject.combineLatest(aSwitchObserverable, bSwitchObserverable,
+                BiFunction<Boolean, Boolean, String> { t1, t2 ->
+                    Log.e(TAG, "combineSwitch BiFunction() a:$t1 b:$t2")
+                    var result = "둘다 거짓"
+                    if (t1 && t2) {
+                        result = "둘다 참"
+                    }
+
+                    result
+                })
+
+        combineSwitch.subscribe(object : Observer<String>{
+            override fun onComplete() {
+                Log.e(TAG, "combineSwitch onComplete()")
+            }
+
+            override fun onSubscribe(d: Disposable?) {
+                disposable.add(d)
+            }
+
+            override fun onNext(t: String?) {
+                Log.e(TAG, "combineSwitch onNext() $t")
+                contentBinding.combineSwitchTv.text = t
+            }
+
+            override fun onError(e: Throwable?) {
+                Log.e(TAG, "combineSwitch error() ${e?.message}")
+            }
+        })
     }
 
-    private inner class inputObject(id: CharSequence?, pw: CharSequence?) {
+    private inner class JoinObject(id: CharSequence?, pw: CharSequence?) {
         var id = id
         var pw = pw
     }
@@ -196,7 +269,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
     private fun rxjavaTest() {
         val observer = Observable.just("hello, world")
         val onNextAction: Consumer<String> = Consumer {
-            Log.e(TAG, "${it}")
+            Log.e(TAG, "$it")
         }
         val textDisposable = observer.map { it }
                 .subscribe(onNextAction)
@@ -210,7 +283,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                 }
         disposable.add(textDisposable2)
         val list = listOf<String>("a", "b", "c", "d", "e")
-        val posable = Observable.just("a", "b", "c", "d", "e")
+        val posable = Observable.fromIterable(list)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .doOnNext(Consumer { t -> Log.e(TAG, String.format("simple doOnNext() %s ", t)) })
