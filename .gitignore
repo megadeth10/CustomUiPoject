@@ -24,3 +24,5 @@
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
 /db.json
+/apk/debug/app-debug.apk
+/apk/debug/output-metadata.json
