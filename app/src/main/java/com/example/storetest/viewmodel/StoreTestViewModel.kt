@@ -11,16 +11,14 @@ import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.PublishSubject
-import org.koin.java.KoinJavaComponent
 
 /**
  * TODO: activity 종료 되어서 onCleared() 호출이 되지 않는다.
  * koin viewModel로 생성하면 lifecycle이 설정 되지 않은 듯하다. 일단. ViewModelProvider로 변경해봐야 겠다.
- * resolve: ViewModelProvider로 생성하면 정상 동작 한다.
  * ref: https://gogorchg.tistory.com/entry/AndroidDI-ViewModel-onCleared-%ED%95%A8%EC%88%98%EA%B0%80-%ED%98%B8%EC%B6%9C-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9D%84-%EB%95%8C
  */
-class StoreTestViewModel: ViewModel() {
-    private val userStore:User by KoinJavaComponent.inject(User::class.java)
+class StoreTestViewModel(userStore:User): ViewModel() {
+    private val userStore= userStore
     private val _userToken: MutableLiveData<String> = MutableLiveData(userStore.getToken())
     val userToken: LiveData<String>
         get() = this._userToken

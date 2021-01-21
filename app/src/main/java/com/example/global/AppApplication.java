@@ -12,6 +12,7 @@ import com.example.network.retrofit2.koin.NetworkModuleKt;
 import com.example.pagedlist.module.PostDataSourceModuleKt;
 import com.example.store.user.User;
 import com.example.store.user.UserModuleKt;
+import com.example.storetest.module.StoreTestViewModelModuleKt;
 import com.example.storetestsub.module.StoreTestSubViewModelModuleKt;
 import com.example.test.myapplication.BuildConfig;
 import com.example.utils.Log;
@@ -43,7 +44,7 @@ public class AppApplication extends Application {
         modules.add(PostRxJavaApiNetworkModuleKt.getPostRxJavaApiModule());
         modules.add(PostRxJavaViewModelModuleKt.getPostRxJavaViewModelModule());
         modules.add(UserModuleKt.getUserModule());
-//        modules.add(StoreTestViewModelModuleKt.getStoreViewModelModule());
+        modules.add(StoreTestViewModelModuleKt.getStoreViewModelModule());
         modules.add(StoreTestSubViewModelModuleKt.getStoreSubViewModelModule());
         KoinApplication koin = KoinAndroidApplication.create(this)
                 .modules(modules);
