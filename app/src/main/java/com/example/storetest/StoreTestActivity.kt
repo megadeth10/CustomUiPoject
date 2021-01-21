@@ -11,15 +11,17 @@ import com.example.storetestsub.StoreTestSubActivity
 import com.example.test.myapplication.R
 import com.example.test.myapplication.databinding.LayoutStoreTestBinding
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.java.KoinJavaComponent
 
 /**
  * TODO: Refresh Token과 Token의 변경을 각각의 API에서 어떻게 대응할 것인가.
+ * inProgress: retrofit에서 제공을 하는지 확인을 더 해봐야 한다.
  * TODO: 서로 다른 화면에서 Store의 update에 어떻게 반응을 하나
  * solve: 일단 Rxjava publishSubject로 구현 가능하다.
  */
 class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
-    private val storeViewModel by KoinJavaComponent.inject(StoreTestViewModel::class.java)
+    private lateinit var storeViewModel: StoreTestViewModel
     private lateinit var contentBinding: LayoutStoreTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,8 @@ class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
                 R.layout.layout_store_test,
                 null,
                 false)
-        this.contentBinding.storeViewModel = storeViewModel
+        this.storeViewModel = getViewModel()
+        this.contentBinding.storeViewModel = this.storeViewModel
         this.contentBinding.lifecycleOwner = this
         this.setContentsViewBinding(this.contentBinding)
 
