@@ -19,6 +19,8 @@ import org.koin.java.KoinJavaComponent
  * inProgress: retrofit에서 제공을 하는지 확인을 더 해봐야 한다.
  * TODO: 서로 다른 화면에서 Store의 update에 어떻게 반응을 하나
  * solve: 일단 Rxjava publishSubject로 구현 가능하다.
+ * TODO: observer했을때, Activity에서 onResume으로 task를 수행 할수 있는지 추가 구현이 필요하다.
+ * 그러니깐 즉시 수행하지 않고 Activity가 foreground 될때 수행 하는 방법을 찾아 봐야 할것 같다.
  */
 class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
     private lateinit var storeViewModel: StoreTestViewModel
