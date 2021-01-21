@@ -13,4 +13,8 @@ public class secure {
     public String get(Context ctx, String key, String defaultValue){
         return SecurePreferences.getStringValue(key, ctx, defaultValue);
     }
+
+    public void remove(Context ctx, String key){
+        SecurePreferences.removeValue(key, ctx);
+    }
 }

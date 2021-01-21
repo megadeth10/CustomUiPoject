@@ -13,6 +13,12 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
         android:networkSecurityConfig="@xml/network_security_config">
+        <activity android:name="com.example.storetestsub.StoreTestSubActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:screenOrientation="sensor"/>
+        <activity android:name="com.example.storetest.StoreTestActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:screenOrientation="sensor"/>
         <activity android:name="com.example.infinitylistwithrxjava.PostListWithRxjavaActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>

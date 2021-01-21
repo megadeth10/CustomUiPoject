@@ -11,6 +11,7 @@ import com.example.activity.PagerActivity;
 import com.example.infinitylistwithrxjava.PostListWithRxjavaActivity;
 import com.example.pagedlist.PostPagedListActivity;
 import com.example.rxjava.RxjavaSampleActivity;
+import com.example.storetest.StoreTestActivity;
 import com.example.test.aac.AddUserProfileActivity;
 import com.example.test.aac.FragmentBindingActivity;
 import com.example.test.databinding.DataBindingActivity;
@@ -23,6 +24,7 @@ public class UIList {
 
     public UIList(){
         if(mList.size() == 0){
+            mList.add(new MenuItem("user Store Test", StoreTestActivity.class));
             mList.add(new MenuItem("Infinity List with Rxjava", PostListWithRxjavaActivity.class));
             mList.add(new MenuItem("Rxjava test Activity", RxjavaSampleActivity.class));
             mList.add(new MenuItem("Paged List Activity", PostPagedListActivity.class));
