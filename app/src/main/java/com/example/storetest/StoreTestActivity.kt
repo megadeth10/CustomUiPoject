@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.custom.activity.ToolbarActivity
 import com.example.storetest.viewmodel.StoreTestViewModel
 import com.example.storetestsub.StoreTestSubActivity
@@ -19,7 +21,7 @@ import org.koin.java.KoinJavaComponent
  * solve: 일단 Rxjava publishSubject로 구현 가능하다.
  */
 class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
-    private val storeViewModel by KoinJavaComponent.inject(StoreTestViewModel::class.java)
+    private lateinit var storeViewModel: StoreTestViewModel
     private lateinit var contentBinding: LayoutStoreTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,7 @@ class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
                 R.layout.layout_store_test,
                 null,
                 false)
+        this.storeViewModel = ViewModelProvider(this).get(StoreTestViewModel::class.java)
         this.contentBinding.storeViewModel = storeViewModel
         this.contentBinding.lifecycleOwner = this
         this.setContentsViewBinding(this.contentBinding)
