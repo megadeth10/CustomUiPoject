@@ -63,15 +63,15 @@ class StoreTestViewModel(userStore:User): ViewModel() {
 
     fun login(){
         userStore.setToken("Activity에서 login 했다.")
-        this.setToken()
     }
 
     fun logout(){
         userStore.deleteToken()
-        this.setToken()
     }
 
     private fun isLogin() {
-        isLogin.value = userStore.isLogin()
+        var logined = userStore.isLogin()
+        Log.e(TAG, "isLogin() isLogin:$logined")
+        isLogin.value = logined
     }
 }
