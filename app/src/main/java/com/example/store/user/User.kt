@@ -15,9 +15,11 @@ class User {
     private var application: Application
     private var _token: String? = null
     private var tokenObserverableArray: ArrayList<PublishSubject<Boolean>> = ArrayList(0)
+    private var secure: secure
     constructor(application: Application) {
         Log.e(TAG, "constructor()")
         this.application = application
+        this.secure = secure()
     }
 
     fun addTokenSubscribe(observer: Observer<Boolean>): PublishSubject<Boolean>? {
@@ -42,7 +44,7 @@ class User {
 
     fun getToken():String {
         if(this._token == null){
-            this._token = getSecure().get(this.application.applicationContext, TOKEN_KEY_NAME, DEFAULT_TOKEN)
+            this._token = this.secure.get(this.application.applicationContext, TOKEN_KEY_NAME, DEFAULT_TOKEN)
         }
         return this._token!!
     }
@@ -50,24 +52,22 @@ class User {
     fun setToken(token: String) {
         Log.e(TAG, "setToken() $token")
         this._token = token
-        getSecure().set(this.application.applicationContext, TOKEN_KEY_NAME, this._token)
+        this.secure.set(this.application.applicationContext, TOKEN_KEY_NAME, this._token)
         this.notifyTokenSubscribe(true)
     }
 
     fun deleteToken(){
         Log.e(TAG, "deleteToken()")
-        getSecure().remove(this.application.applicationContext, TOKEN_KEY_NAME)
+        this.secure.remove(this.application.applicationContext, TOKEN_KEY_NAME)
         this._token = null
         this.notifyTokenSubscribe(false)
     }
 
     fun isLogin():Boolean{
-        val hasToken = getSecure().get(this.application.applicationContext, TOKEN_KEY_NAME, null) != null
+        val hasToken = this.secure.get(this.application.applicationContext, TOKEN_KEY_NAME, null) != null
         Log.e(TAG, "isLogin() $hasToken")
         return hasToken
     }
-
-    private fun getSecure() = secure()
 
     companion object {
         val TAG = User::class.java.simpleName
