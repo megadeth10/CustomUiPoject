@@ -81,7 +81,7 @@ public class ThirdActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = inputEt.getText().toString();
                 if(!TextUtils.isEmpty(text)) {
-                    new secure().set(ctx, key, text);
+                    new secure().set(ctx, key, text, null);
                 }
             }
         });

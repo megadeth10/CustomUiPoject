@@ -19,6 +19,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * solve: 일단 Rxjava publishSubject로 구현 가능하다.
  * TODO: observer했을때, Activity에서 onResume으로 task를 수행 할수 있는지 추가 구현이 필요하다.
  * 그러니깐 즉시 수행하지 않고 Activity가 foreground 될때 수행 하는 방법을 찾아 봐야 할것 같다.
+ * TODO: Note5에서 file에 write 할때 UI가 update 되지 않는다. MainThread 문제로 ui draw가 hold 되는데 원인을 찾아야한다.
+ * solve MutableLiveData => PostValue() 함수로 해결 하였다.
  */
 class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
     private val storeViewModel:StoreTestViewModel by viewModel()
@@ -51,11 +53,11 @@ class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
         this.contentBinding.loginBtn.setOnClickListener(this)
         this.contentBinding.nextBtn.setOnClickListener(this)
         storeViewModel.isLogin.observe(this, Observer {
-            var text = "로그인"
-            if(it){
-                text = "로그오프"
-            }
-            this.contentBinding.loginBtn.text = text
+                var text = "로그인"
+                if(it){
+                    text = "로그오프"
+                }
+                this.contentBinding.loginBtn.text = text
         })
     }
 
@@ -63,7 +65,7 @@ class StoreTestActivity:ToolbarActivity(), View.OnClickListener {
         var id = p0?.id
         when(id){
             R.id.login_btn -> {
-                if(storeViewModel.isLogin.value!!){
+                if (storeViewModel.isLogin.value!!) {
                     storeViewModel.logout()
                 } else {
                     storeViewModel.login()

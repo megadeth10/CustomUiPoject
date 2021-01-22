@@ -2,12 +2,8 @@ package com.example.store.user
 
 import android.app.Application
 import com.example.secure.secure
-import com.example.storetest.viewmodel.StoreTestViewModel
 import com.example.utils.Log
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 
@@ -26,7 +22,7 @@ class User {
         Log.e(TAG, "addTokenSubscribe() size: ${this.tokenObserverableArray.size}")
         var observerable = PublishSubject.create<Boolean>()
         observerable.observeOn(Schedulers.newThread())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
         observerable.subscribe(observer)
         this.tokenObserverableArray.add(observerable)
         return observerable
@@ -52,8 +48,10 @@ class User {
     fun setToken(token: String) {
         Log.e(TAG, "setToken() $token")
         this._token = token
-        this.secure.set(this.application.applicationContext, TOKEN_KEY_NAME, this._token)
-        this.notifyTokenSubscribe(true)
+        val callback: (Boolean) -> Unit = {
+            this.notifyTokenSubscribe(it)
+        }
+        this.secure.set(this.application.applicationContext, TOKEN_KEY_NAME, this._token, callback)
     }
 
     fun deleteToken(){

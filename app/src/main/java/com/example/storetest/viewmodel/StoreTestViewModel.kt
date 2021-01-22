@@ -57,7 +57,8 @@ class StoreTestViewModel(userStore:User): ViewModel() {
     }
 
     private fun setToken(){
-        _userToken.value = userStore.getToken()
+//        _userToken.value = userStore.getToken()
+        _userToken.postValue(userStore.getToken())
         this.isLogin()
     }
 
@@ -72,6 +73,7 @@ class StoreTestViewModel(userStore:User): ViewModel() {
     private fun isLogin() {
         var logined = userStore.isLogin()
         Log.e(TAG, "isLogin() isLogin:$logined")
-        isLogin.value = logined
+//        isLogin.value = logined
+        isLogin.postValue(logined)
     }
 }
