@@ -67,13 +67,20 @@ class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
             this.updateButton()
         })
 
-        val clickObserverable = Observable.create(ObservableOnSubscribe<View> {
+        val clickObserverable = Observable.create<View> {
             this.contentBinding.loginBtn.setOnClickListener { view->
                 if(!it.isDisposed){
                     it.onNext(view)
                 }
             }
-        })
+        }
+//        val clickObserverable = Observable.create(ObservableOnSubscribe<View> {
+//            this.contentBinding.loginBtn.setOnClickListener { view->
+//                if(!it.isDisposed){
+//                    it.onNext(view)
+//                }
+//            }
+//        })
         clickObserverable.debounce(200, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
