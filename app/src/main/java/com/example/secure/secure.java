@@ -22,14 +22,14 @@ public class secure {
 //        SecurePreferences.setValue(key, value, ctx);
         PreferencesObject object = new PreferencesObject(ctx, key, value, callback);
         Single.just(object)
-                .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
                 .subscribe(t -> {
                     SecurePreferences.setValue(t.key, t.value, t.context);
-                    Log.e(TAG, String.format("SecurePreferences.setValue() finish"));
                     if(t.function != null) {
                         t.function.invoke(true);
                     }
+                    Log.e(TAG, String.format("SecurePreferences.setValue() finish"));
                 });
         Log.e(TAG, String.format("set() consumed time: %d",
                 Calendar.getInstance().getTimeInMillis() - time));

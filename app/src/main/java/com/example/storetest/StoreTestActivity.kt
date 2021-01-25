@@ -11,7 +11,15 @@ import com.example.storetestsub.StoreTestSubActivity
 import com.example.test.myapplication.R
 import com.example.test.myapplication.databinding.LayoutStoreTestBinding
 import com.example.utils.Log
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.internal.operators.observable.ObservableObserveOn
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeUnit
 
 /**
  * TODO: Refresh Token과 Token의 변경을 각각의 API에서 어떻게 대응할 것인가.
@@ -27,11 +35,17 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
     private val storeViewModel: StoreTestViewModel by viewModel()
     private lateinit var contentBinding: LayoutStoreTestBinding
+    private val disposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = StoreTestActivity::class.java.simpleName
         this.setToolbar()
         this.setContents()
+    }
+
+    override fun onDestroy() {
+        this.disposable.clear()
+        super.onDestroy()
     }
 
     private fun setToolbar() {
@@ -53,7 +67,34 @@ class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
             this.updateButton()
         })
 
-        this.contentBinding.loginBtn.setOnClickListener(this)
+        val clickObserverable = Observable.create(ObservableOnSubscribe<View> {
+            this.contentBinding.loginBtn.setOnClickListener { view->
+                if(!it.isDisposed){
+                    it.onNext(view)
+                }
+            }
+        })
+        clickObserverable.debounce(200, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object: io.reactivex.rxjava3.core.Observer<View>{
+                    override fun onComplete() {
+
+                    }
+
+                    override fun onSubscribe(d: Disposable?) {
+                        disposable.add(d)
+                    }
+
+                    override fun onNext(t: View?) {
+                        onClick(t)
+                    }
+
+                    override fun onError(e: Throwable?) {
+
+                    }
+                })
+
         this.contentBinding.nextBtn.setOnClickListener(this)
     }
 
