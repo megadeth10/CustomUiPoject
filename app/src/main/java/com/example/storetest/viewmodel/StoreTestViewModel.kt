@@ -17,8 +17,6 @@ class StoreTestViewModel(userStore:User): ViewModel() {
     private val _userToken: MutableLiveData<String> = MutableLiveData(userStore.getToken())
     val userToken: LiveData<String>
         get() = this._userToken
-    var isLogin: MutableLiveData<Boolean> = MutableLiveData(userStore.isLogin())
-        private set
     private var tokenObserverable:PublishSubject<Boolean>? = null
     private val disposable = CompositeDisposable()
     init {
@@ -58,22 +56,16 @@ class StoreTestViewModel(userStore:User): ViewModel() {
 
     private fun setToken(){
 //        _userToken.value = userStore.getToken()
+        // TODO: postValue는 background에서 수행되기 때문에 바로 다음 line에서 변경된 값을 받지 못한다.
+        // 다만 변경된 값에서 서로 다른 liveData를 변경하는 것이기 때문에 문제가 없을것 같다.
         _userToken.postValue(userStore.getToken())
-        this.isLogin()
     }
 
     fun login(){
         userStore.setToken("Activity에서 login 했다.")
     }
 
-    fun logout(){
-        userStore.deleteToken()
-    }
+    fun logout() = userStore.deleteToken()
 
-    private fun isLogin() {
-        var logined = userStore.isLogin()
-        Log.e(TAG, "isLogin() isLogin:$logined")
-//        isLogin.value = logined
-        isLogin.postValue(logined)
-    }
+    fun isLogin():Boolean = userStore.isLogin()
 }
