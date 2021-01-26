@@ -4,7 +4,7 @@
     <data>
         <variable
             name="storeViewModel"
-            type="com.example.storetest.viewmodel.StoreTestViewModel" />
+            type="com.example.scene.storetest.viewmodel.StoreTestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

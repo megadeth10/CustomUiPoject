@@ -5,7 +5,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.activity.CollapsingToolbarLayoutActivity">
+    tools:context="com.example.scene.activity.CollapsingToolbarLayoutActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
-        <com.example.activity.behavior.CustomCollapsingToolbarLayout
+        <com.example.scene.activity.behavior.CustomCollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
@@ -44,7 +44,7 @@
                 app:navigationIcon="@android:drawable/ic_delete"
                 app:layout_collapseMode="pin"/>
 
-        </com.example.activity.behavior.CustomCollapsingToolbarLayout>
+        </com.example.scene.activity.behavior.CustomCollapsingToolbarLayout>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -120,6 +120,6 @@
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        app:layout_behavior="com.example.activity.behavior.CustomFloatingActionButtonBehavior"/>
+        app:layout_behavior="com.example.scene.activity.behavior.CustomFloatingActionButtonBehavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,18 +2,16 @@ package com.example.global;
 
 import android.app.Application;
 
-import com.example.infinitylist.module.PostApiNetworkModuleKt;
-import com.example.infinitylist.module.PostViewModelModuleKt;
-import com.example.infinitylistwithrxjava.module.PostRxJavaApiNetworkModuleKt;
-import com.example.infinitylistwithrxjava.module.PostRxJavaViewModelModuleKt;
-import com.example.infinitylistwithrxjava.viewmodel.PostRxJavaViewModel;
-import com.example.kointest.KoinModuleKt;
+import com.example.scene.infinitylist.module.PostApiNetworkModuleKt;
+import com.example.scene.infinitylist.module.PostViewModelModuleKt;
+import com.example.scene.infinitylistwithrxjava.module.PostRxJavaApiNetworkModuleKt;
+import com.example.scene.infinitylistwithrxjava.module.PostRxJavaViewModelModuleKt;
+import com.example.test.kointest.KoinModuleKt;
 import com.example.network.retrofit2.koin.NetworkModuleKt;
-import com.example.pagedlist.module.PostDataSourceModuleKt;
-import com.example.store.user.User;
+import com.example.scene.pagedlist.module.PostDataSourceModuleKt;
 import com.example.store.user.UserModuleKt;
-import com.example.storetest.module.StoreTestViewModelModuleKt;
-import com.example.storetestsub.module.StoreTestSubViewModelModuleKt;
+import com.example.scene.storetest.module.StoreTestViewModelModuleKt;
+import com.example.scene.storetestsub.module.StoreTestSubViewModelModuleKt;
 import com.example.test.myapplication.BuildConfig;
 import com.example.utils.Log;
 

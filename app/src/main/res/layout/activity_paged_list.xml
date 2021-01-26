@@ -24,6 +24,6 @@
 
         <variable
             name="viewModel"
-            type="com.example.pagedlist.viewmodel.PostPagedListViewModel" />
+            type="com.example.scene.pagedlist.viewmodel.PostPagedListViewModel" />
     </data>
 </layout>

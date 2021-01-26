@@ -13,19 +13,19 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name="com.example.storetestsub.StoreTestSubActivity"
+        <activity android:name="com.example.scene.storetestsub.StoreTestSubActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>
-        <activity android:name="com.example.storetest.StoreTestActivity"
+        <activity android:name="com.example.scene.storetest.StoreTestActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>
-        <activity android:name="com.example.infinitylistwithrxjava.PostListWithRxjavaActivity"
+        <activity android:name="com.example.scene.infinitylistwithrxjava.PostListWithRxjavaActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>
-        <activity android:name="com.example.rxjava.RxjavaSampleActivity"
+        <activity android:name="com.example.scene.rxjava.RxjavaSampleActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>
-        <activity android:name="com.example.pagedlist.PostPagedListActivity"
+        <activity android:name="com.example.scene.pagedlist.PostPagedListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor"/>
         <activity android:name="com.example.test.databinding.DataBindingActivity"
@@ -43,37 +43,37 @@
         <activity android:name="com.example.test.aac.EditUserProfileActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
-            android:name="com.example.activity.NestedScrollViewActivity"
+            android:name="com.example.scene.activity.NestedScrollViewActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.activity.FoldListActivity"
+            android:name="com.example.scene.activity.FoldListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.activity.ScrollingViewBehaviorActivity"
+            android:name="com.example.scene.activity.ScrollingViewBehaviorActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.activity.CollapsingToolbarLayoutActivity"
+            android:name="com.example.scene.activity.CollapsingToolbarLayoutActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.infinitylist.PostInfinityListActivity"
+            android:name="com.example.scene.infinitylist.PostInfinityListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
             android:name="com.example.test.material.BottomNavigationActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.activity.CardScrollActivity"
+            android:name="com.example.scene.activity.CardScrollActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.activity.MaterialButtonActivity"
+            android:name="com.example.scene.activity.MaterialButtonActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.activity.PagerActivity"
+            android:name="com.example.scene.activity.PagerActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity android:name="com.example.activity.UIListActivity">
+        <activity android:name="com.example.scene.activity.UIListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

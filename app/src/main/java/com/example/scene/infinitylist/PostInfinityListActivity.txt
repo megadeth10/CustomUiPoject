@@ -1,0 +1,248 @@
+package com.example.scene.infinitylist;
+
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.scene.infinitylist.data.Post;
+import com.example.custom.activity.ToolbarActivity;
+import com.example.custom.widget.listview.adapter.InfinityAdapter;
+import com.example.scene.infinitylist.adapter.PostInfinityAdapter;
+import com.example.scene.infinitylist.api.GetPosts;
+import com.example.scene.infinitylist.data.Posts;
+import com.example.scene.infinitylist.viewmodel.PostViewModel;
+import com.example.test.myapplication.R;
+import com.example.test.myapplication.databinding.LayoutInfinityListBinding;
+import com.example.test.myapplication.databinding.ViewToolbarButtonBinding;
+import com.example.utils.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import kotlin.Lazy;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static org.koin.java.KoinJavaComponent.inject;
+
+/**
+ * Infinity RecycleView
+ * TODO: koin ViewModel 작업을 해야한다.
+ * TODO: paging 되는 마지막 item이 잘못된 View로 bind된다.
+ */
+public class PostInfinityListActivity extends ToolbarActivity implements View.OnClickListener {
+    private int REQUEST_DATA = 0;
+    private Call<?> mCaller = null;
+    private Lazy<GetPosts> getPosts = inject(GetPosts.class);
+    private LayoutInfinityListBinding contentBinding;
+    private Lazy<Retrofit> retrofit = inject(Retrofit.class);
+    private PostViewModel postViewModel;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        this.TAG = PostInfinityListActivity.class.getSimpleName();
+        this.setToolbar();
+        this.setContentBind();
+        this.setInitView();
+        this.getDataListWithKoin();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.cancelCaller();
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.toolbar_btn1:
+                this.refreshList();
+                break;
+        }
+    }
+
+    private void setToolbar(){
+        ViewToolbarButtonBinding toolbarBinding = ViewToolbarButtonBinding.inflate(getLayoutInflater());
+        toolbarBinding.toolbarBtn1.setOnClickListener(this);
+        toolbarBinding.toolbarBtn2.setVisibility(View.GONE);
+        toolbarBinding.setLifecycleOwner(this);
+        this.getToolBar().setTitle("Infinity List");
+        this.getToolBar().addView(toolbarBinding.getRoot());
+    }
+
+    private void setContentBind(){
+        contentBinding = LayoutInfinityListBinding.inflate(getLayoutInflater());
+        contentBinding.setLifecycleOwner(this);
+//        postViewModel = new PostViewModel();
+        contentBinding.setViewModel(postViewModel);
+        this.setContentsViewBinding(contentBinding);
+    }
+
+    /**
+     * 이걸 BindingAdapater로 바꾸어야 하나.
+     */
+    private void setInitView(){
+        contentBinding.list.setOnLoadMoreListener(() -> getDataListWithKoin());
+        InfinityAdapter adapter = new PostInfinityAdapter(view -> {
+            Post item = (Post) view.getTag();
+            showSnackBar(item.getTitle());
+        });
+        contentBinding.list.setAdapter(adapter);
+        contentBinding.refreshLayout.setOnRefreshListener(() -> {
+            Log.e(TAG, String.format("onRefresh"));
+            refreshList();
+        });
+        postViewModel.getList().observe(this, new Observer<ArrayList<Post>>() {
+            @Override
+            public void onChanged(ArrayList<Post> posts) {
+                adapter.setItemArray(posts);
+            }
+        });
+    }
+
+    private void refreshList() {
+        this.resetList();
+        this.getDataListWithKoin();
+        this.setRefresh();
+    }
+
+    private void resetList() {
+        InfinityAdapter adapter = (InfinityAdapter) contentBinding.list.getAdapter();
+        adapter.resetAdapter();
+        contentBinding.list.setEndItem(false);
+        postViewModel.reset();
+    }
+
+    private void setList(@NonNull ArrayList<Post> list) {
+        ArrayList<Post> data = list;
+        if (list == null || (list != null && list.size() == 0)) {
+            data = new ArrayList<>(0);
+            contentBinding.list.setEndItem(true);
+        } else {
+            contentBinding.list.setEndItem(false);
+        }
+        postViewModel.setList(data);
+        contentBinding.list.setLoaded();
+    }
+
+    private void cancelCaller() {
+        if (this.mCaller != null) {
+            this.mCaller.cancel();
+            this.mCaller = null;
+        }
+    }
+
+    private void setCaller(Call<?> caller) {
+        this.mCaller = caller;
+    }
+
+    private void setRefresh() {
+        if (contentBinding.refreshLayout.isRefreshing()) {
+            contentBinding.refreshLayout.setRefreshing(false);
+        }
+    }
+
+    /**
+     * Rest API 호출용 함수 이며 Koin을 이용한 객체 사용
+     */
+    private void getDataListWithKoin() {
+        Call<Posts> caller = getPosts.getValue().getPosts();
+//        Call<Posts> caller = retrofit.getValue().create(GetPosts.class).getPosts();
+        this.setCaller(caller);
+        caller.enqueue(
+                new Callback<Posts>() {
+                    @Override
+                    public void onResponse(Call<Posts> call, Response<Posts> response) {
+                        Log.e(TAG, "onResponse()");
+                        if(((PostInfinityAdapter)contentBinding.list.getAdapter()).getPageCount() == 2){
+                            setList(null);
+                            return;
+                        }
+
+                        if (response.isSuccessful()) {
+                            Posts item = response.body();
+                            if (item != null) {
+                                setList((ArrayList<Post>) item.getData());
+                            }
+                        }
+                        setRefresh();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Posts> call, Throwable t) {
+                        Log.e(TAG, String.format("onFailure() %s", t.getMessage()));
+                        getSampleDataList(0);
+                        setRefresh();
+                    }
+                }
+        );
+    }
+
+    /**
+     * ============================= 테스트를 위해 만든 로직 =======================
+     */
+//    private Handler mLoadDataHandler = new Handler(message -> {
+//        if (message.what == REQUEST_DATA) {
+//            getDataListWithKoin();
+//            return true;
+//        }
+//        return false;
+//    });
+
+//    private void getData() {
+//        Message msg = mLoadDataHandler.obtainMessage(REQUEST_DATA);
+//        mLoadDataHandler.removeMessages(REQUEST_DATA);
+//        // TODO: 테스트용으로 Delay 1초줌
+//        mLoadDataHandler.sendMessageDelayed(msg, 1000);
+//    }
+
+    private void getSampleDataList(int pageNumber) {
+        ArrayList<Post> list = new ArrayList<Post>();
+        for (int i = 0; i < 20; i++) {
+            Post item = new Post();
+            item.setId(i);
+            item.setAuthor(String.format("bbbb %d-%d ", pageNumber, i));
+            item.setTitle(String.format("bbbb %d-%d", pageNumber, i));
+            list.add(item);
+        }
+        setList(list);
+    }
+
+    /**
+     * Rest API 호출용 함수
+     */
+//    private void getDataList() {
+//        Call<Posts> caller = Retrofit2NetworkLayer.INSTANCE.getInstance().create(Retrofit2APIInterface.class).getPosts();
+//        this.setCaller(caller);
+//        caller.enqueue(
+//                new Callback<Posts>() {
+//                    @Override
+//                    public void onResponse(Call<Posts> call, Response<Posts> response) {
+//                        Log.e(TAG, "onResponse()");
+//                        if (response.isSuccessful()) {
+//                            Posts item = response.body();
+//                            if (item != null) {
+//                                setList(item.getData());
+//                            }
+//                        }
+//                        setRefresh();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Posts> call, Throwable t) {
+//                        Log.e(TAG, String.format("onFailure() %s", t.getMessage()));
+//                        setRefresh();
+//                    }
+//                }
+//        );
+//    }
+}

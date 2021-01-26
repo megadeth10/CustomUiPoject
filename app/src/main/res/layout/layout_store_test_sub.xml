@@ -5,7 +5,7 @@
     <data>
         <variable
             name="storeTestSubViewModel"
-            type="com.example.storetestsub.viewmodel.StoreTestSubViewModel" />
+            type="com.example.scene.storetestsub.viewmodel.StoreTestSubViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
