@@ -15,15 +15,13 @@ class StoreTestSubActivity : ToolbarActivity(), View.OnClickListener {
     private val subViewModel: StoreTestSubViewModel by viewModel() // by KoinJavaComponent.inject(StoreTestSubViewModel::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.setToolbar()
-        this.setContents()
     }
 
-    private fun setToolbar() {
+    override fun setToolbar() {
         this.binding.toolbar.title = "Store Sub Activity"
     }
 
-    private fun setContents() {
+    override fun setContent() {
         this.contentsBinding = DataBindingUtil.inflate(
                 layoutInflater,
                 R.layout.layout_store_test_sub,

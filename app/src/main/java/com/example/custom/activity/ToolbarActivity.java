@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
+
+import com.example.custom.activity.callback.iToolbarInterface;
 import com.example.test.myapplication.R;
 import com.example.test.myapplication.databinding.ActivityBaseBinding;
 import com.example.utils.Log;
@@ -12,7 +14,7 @@ import com.example.utils.Log;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-public class ToolbarActivity extends DialogActivity{
+abstract public class ToolbarActivity extends DialogActivity implements iToolbarInterface {
     protected ActivityBaseBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class ToolbarActivity extends DialogActivity{
                 finish();
             }
         });
+        this.setToolbar();
+        this.setContent();
     }
 
     @Override
@@ -72,4 +76,5 @@ public class ToolbarActivity extends DialogActivity{
             binding.contentView.addView(rootView.getRoot());
         }
     }
+
 }

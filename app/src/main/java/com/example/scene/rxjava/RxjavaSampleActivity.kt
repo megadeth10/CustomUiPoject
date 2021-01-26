@@ -35,8 +35,6 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = RxjavaSampleActivity::class.simpleName
-        this.setToolbar()
-        this.setContent()
         this.setViewWidget()
         Log.e(TAG, "rxJavaGetPost $rxjavaGetPost")
         Log.e(TAG, "GetPost $getPost")
@@ -61,11 +59,11 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
         }
     }
 
-    private fun setToolbar() {
+    override fun setToolbar() {
         this.binding.toolbar.title = "RxJava Test"
     }
 
-    private fun setContent() {
+    override fun setContent() {
         this.contentBinding = DataBindingUtil.inflate(layoutInflater, R.layout.activity_rxjava_test, null, false)
         this.setContentsViewBinding(this.contentBinding)
     }

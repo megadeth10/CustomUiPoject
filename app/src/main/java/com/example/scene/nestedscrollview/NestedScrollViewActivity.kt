@@ -24,8 +24,14 @@ class NestedScrollViewActivity: ToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = NestedScrollViewActivity::class.simpleName
-        this.toolBar.title = "NestedScrollView Activity"
 
+    }
+
+    override fun setToolbar() {
+        this.toolBar.title = "NestedScrollView Activity"
+    }
+
+    override fun setContent() {
         setContentsLayout(R.layout.layout_nested_scroll_view)
         val imageView = findViewById<ImageView>(R.id.image)
         Glide.with(this)
@@ -40,7 +46,7 @@ class NestedScrollViewActivity: ToolbarActivity() {
         adapter.itemArray = getList();
         list.adapter?.notifyDataSetChanged()
 
-//        val list = findViewById<ListView>(R.id.list)
+        //        val list = findViewById<ListView>(R.id.list)
 //        val adapter = ListAdapter()
 //        list.adapter = adapter
 //        adapter.setItem(getList())

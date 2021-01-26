@@ -26,8 +26,15 @@ public class BottomNavigationActivity extends ToolbarActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = BottomNavigationActivity.class.getSimpleName();
-        this.getToolBar().setTitle("Bottom Navigation");
+    }
 
+    @Override
+    public void setToolbar() {
+        this.getToolBar().setTitle("Bottom Navigation");
+    }
+
+    @Override
+    public void setContent() {
         setContentsLayout(R.layout.layout_bottom_navigation);
 
         BottomNavigationView bottomView = findViewById(R.id.bottom_navigation);

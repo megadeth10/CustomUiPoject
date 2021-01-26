@@ -34,8 +34,6 @@ class FoldListActivity : ToolbarActivity(), View.OnClickListener, iFoldRecycleVi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = FoldListActivity::class.simpleName
-        this.setToolBar()
-        this.setContentBinding()
     }
 
     override fun onBindChildView(holder: FoldViewHolder?, position: Int, parent: ViewGroup, item: FoldItem) {
@@ -61,7 +59,7 @@ class FoldListActivity : ToolbarActivity(), View.OnClickListener, iFoldRecycleVi
         this.foldItemViewModel?.pagingData()
     }
 
-    private fun setToolBar() {
+    override fun setToolbar() {
         this.toolBar?.title = "Fold ListView"
         this.toolBar?.setNavigationOnClickListener { finish() }
         var toolbarButton = ViewToolbarButtonBinding.inflate(layoutInflater)
@@ -71,7 +69,7 @@ class FoldListActivity : ToolbarActivity(), View.OnClickListener, iFoldRecycleVi
         this.toolBar.addView(toolbarButton.root)
     }
 
-    private fun setContentBinding(){
+    override fun setContent() {
         viewBinding = LayoutHorizontalListviewBinding.inflate(layoutInflater)
         setContentsViewBinding(viewBinding)
 

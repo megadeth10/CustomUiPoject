@@ -27,8 +27,6 @@ class PostInfinityListActivity : ToolbarActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = PostInfinityListActivity::class.java.simpleName
-        setToolbar()
-        setContentBind()
         setInitView()
     }
 
@@ -39,7 +37,7 @@ class PostInfinityListActivity : ToolbarActivity(), View.OnClickListener {
         }
     }
 
-    private fun setToolbar() {
+    override fun setToolbar() {
         val toolbarBinding = ViewToolbarButtonBinding.inflate(layoutInflater)
         toolbarBinding.toolbarBtn1.setOnClickListener(this)
         toolbarBinding.toolbarBtn2.visibility = View.GONE
@@ -48,7 +46,7 @@ class PostInfinityListActivity : ToolbarActivity(), View.OnClickListener {
         this.toolBar.addView(toolbarBinding.root)
     }
 
-    private fun setContentBind() {
+    override fun setContent() {
         contentBinding = LayoutInfinityListBinding.inflate(layoutInflater)
         contentBinding!!.lifecycleOwner = this
         contentBinding!!.viewModel = postViewModel

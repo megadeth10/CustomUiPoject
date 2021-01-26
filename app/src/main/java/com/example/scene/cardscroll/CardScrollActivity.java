@@ -17,8 +17,15 @@ public class CardScrollActivity extends ToolbarActivity implements CardScrollVie
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.TAG = CardScrollActivity.class.getSimpleName();
+    }
 
+    @Override
+    public void setToolbar() {
         this.getToolBar().setTitle("Card Horizontal ScrollView");
+    }
+
+    @Override
+    public void setContent() {
         LayoutCardScrollviewBinding contextBind = LayoutCardScrollviewBinding.inflate(getLayoutInflater());
         setContentsViewBinding(contextBind);
 

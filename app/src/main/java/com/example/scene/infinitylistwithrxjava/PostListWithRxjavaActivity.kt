@@ -29,8 +29,6 @@ class PostListWithRxjavaActivity : ToolbarActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = PostListWithRxjavaActivity::class.java.simpleName
-        setToolbar()
-        setContentBind()
         setInitView()
         Log.e(TAG, "rxJavaGetPost $rxjavaGetPost")
         Log.e(TAG, "GetPost $getPost")
@@ -43,7 +41,7 @@ class PostListWithRxjavaActivity : ToolbarActivity(), View.OnClickListener {
         }
     }
 
-    private fun setToolbar() {
+    override fun setToolbar() {
         val toolbarBinding = ViewToolbarButtonBinding.inflate(layoutInflater)
         toolbarBinding.toolbarBtn1.setOnClickListener(this)
         toolbarBinding.toolbarBtn2.visibility = View.GONE
@@ -52,7 +50,7 @@ class PostListWithRxjavaActivity : ToolbarActivity(), View.OnClickListener {
         this.toolBar.addView(toolbarBinding.root)
     }
 
-    private fun setContentBind() {
+    override fun setContent() {
         contentBinding = LayoutListWithRxjavaBinding.inflate(layoutInflater)
         contentBinding!!.lifecycleOwner = this
         contentBinding!!.viewModel = postViewModel

@@ -36,8 +36,6 @@ class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TAG = StoreTestActivity::class.java.simpleName
-        this.setToolbar()
-        this.setContents()
     }
 
     override fun onDestroy() {
@@ -45,11 +43,11 @@ class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
         super.onDestroy()
     }
 
-    private fun setToolbar() {
+    override fun setToolbar() {
         this.binding.toolbar.title = "Application Store Test"
     }
 
-    private fun setContents() {
+    override fun setContent() {
         this.contentBinding = DataBindingUtil.inflate(
                 layoutInflater,
                 R.layout.layout_store_test,
