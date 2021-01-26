@@ -1,4 +1,4 @@
-package com.example.scene.activity
+package com.example.scene.nestedscrollview
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.scene.activity.menu.MenuAdapter
-import com.example.scene.activity.menu.UIList
+import com.example.scene.uilist.menu.MenuAdapter
+import com.example.scene.uilist.menu.UIList
 import com.example.custom.activity.ToolbarActivity
 import com.example.test.myapplication.R
 import com.example.utils.Log

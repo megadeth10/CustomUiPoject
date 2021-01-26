@@ -1,4 +1,4 @@
-package com.example.scene.activity.collapsinglayout
+package com.example.scene.caollapsingtollbar.collapsinglayout
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.scene.activity.menu.MenuAdapter
-import com.example.scene.activity.menu.UIList
+import com.example.scene.uilist.menu.MenuAdapter
+import com.example.scene.uilist.menu.UIList
 import com.example.test.myapplication.R
 import com.example.utils.Log
 
-class LeftTabFragment: Fragment() {
+class RightTabFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.e("ListFragment", "initData")
-        val view = inflater.inflate(R.layout.fragment_left, container, false);
+        val view = inflater.inflate(R.layout.fragment_right, container, false)
         return view
     }
 
@@ -33,7 +32,7 @@ class LeftTabFragment: Fragment() {
     private fun initData() {
         Log.e("ListFragment", "initData")
         val data = ArrayList<UIList.MenuItem>();
-        for (i in 0..30) {
+        for (i in 0..1) {
             data.add(UIList.MenuItem(String.format("aaaa %d", i), null))
         }
         val list = view?.findViewById<RecyclerView>(R.id.list)

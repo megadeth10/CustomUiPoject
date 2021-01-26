@@ -1,4 +1,4 @@
-package com.example.scene.activity;
+package com.example.scene.uilist;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.scene.activity.menu.MenuAdapter;
-import com.example.scene.activity.menu.UIList;
+import com.example.scene.uilist.menu.MenuAdapter;
+import com.example.scene.uilist.menu.UIList;
 import com.example.test.kointest.KoinPresenter;
 import com.example.test.myapplication.R;
 

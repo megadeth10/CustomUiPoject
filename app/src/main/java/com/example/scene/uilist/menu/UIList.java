@@ -1,13 +1,13 @@
-package com.example.scene.activity.menu;
+package com.example.scene.uilist.menu;
 
-import com.example.scene.activity.CardScrollActivity;
-import com.example.scene.activity.FoldListActivity;
+import com.example.scene.cardscroll.CardScrollActivity;
+import com.example.scene.foldlist.FoldListActivity;
 import com.example.scene.infinitylist.PostInfinityListActivity;
-import com.example.scene.activity.MaterialButtonActivity;
-import com.example.scene.activity.CollapsingToolbarLayoutActivity;
-import com.example.scene.activity.NestedScrollViewActivity;
-import com.example.scene.activity.ScrollingViewBehaviorActivity;
-import com.example.scene.activity.PagerActivity;
+import com.example.scene.materialbutton.MaterialButtonActivity;
+import com.example.scene.caollapsingtollbar.CollapsingToolbarLayoutActivity;
+import com.example.scene.nestedscrollview.NestedScrollViewActivity;
+import com.example.scene.scrollbehavior.ScrollingViewBehaviorActivity;
+import com.example.scene.pager.PagerActivity;
 import com.example.scene.infinitylistwithrxjava.PostListWithRxjavaActivity;
 import com.example.scene.pagedlist.PostPagedListActivity;
 import com.example.scene.rxjava.RxjavaSampleActivity;

@@ -43,18 +43,18 @@
         <activity android:name="com.example.test.aac.EditUserProfileActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
-            android:name="com.example.scene.activity.NestedScrollViewActivity"
+            android:name="com.example.scene.nestedscrollview.NestedScrollViewActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.scene.activity.FoldListActivity"
+            android:name="com.example.scene.foldlist.FoldListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.scene.activity.ScrollingViewBehaviorActivity"
+            android:name="com.example.scene.scrollbehavior.ScrollingViewBehaviorActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.scene.activity.CollapsingToolbarLayoutActivity"
+            android:name="com.example.scene.caollapsingtollbar.CollapsingToolbarLayoutActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.infinitylist.PostInfinityListActivity"
@@ -64,16 +64,16 @@
             android:name="com.example.test.material.BottomNavigationActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.scene.activity.CardScrollActivity"
+            android:name="com.example.scene.cardscroll.CardScrollActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.scene.activity.MaterialButtonActivity"
+            android:name="com.example.scene.materialbutton.MaterialButtonActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name="com.example.scene.activity.PagerActivity"
+            android:name="com.example.scene.pager.PagerActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity android:name="com.example.scene.activity.UIListActivity">
+        <activity android:name="com.example.scene.uilist.UIListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.scene.activity.viewmodel
+package com.example.scene.cardscroll.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

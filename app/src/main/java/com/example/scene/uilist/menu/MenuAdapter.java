@@ -1,4 +1,4 @@
-package com.example.scene.activity.menu;
+package com.example.scene.uilist.menu;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -4,7 +4,7 @@
     xmlns:test="http://test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.scene.activity.PagerActivity">
+    tools:context="com.example.scene.pager.PagerActivity">
 
     <com.example.custom.view.pager.CustomViewPager
         android:id="@+id/custom_pager"

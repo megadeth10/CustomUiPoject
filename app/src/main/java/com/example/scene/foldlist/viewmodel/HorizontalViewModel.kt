@@ -1,9 +1,9 @@
-package com.example.scene.activity.viewmodel
+package com.example.scene.foldlist.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.scene.activity.menu.UIList
+import com.example.scene.uilist.menu.UIList
 
 
 class HorizontalViewModel : ViewModel {

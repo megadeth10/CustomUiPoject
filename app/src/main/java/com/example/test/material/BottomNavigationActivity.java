@@ -81,7 +81,7 @@ public class BottomNavigationActivity extends ToolbarActivity {
     }
 
     private void showDialog() {
-        this.mMaterialDialog.setTitle("타이틀").setMessage("본문").setOnCancelListener(new DialogInterface.OnCancelListener() {
+        this.getDialogBuilder().setTitle("타이틀").setMessage("본문").setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
                 logE("onCancel()");

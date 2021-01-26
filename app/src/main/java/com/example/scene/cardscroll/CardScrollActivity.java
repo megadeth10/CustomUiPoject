@@ -1,9 +1,9 @@
-package com.example.scene.activity;
+package com.example.scene.cardscroll;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.scene.activity.viewmodel.CardScrollViewModel;
+import com.example.scene.cardscroll.viewmodel.CardScrollViewModel;
 import com.example.custom.activity.ToolbarActivity;
 import com.example.custom.view.scrollview.cardscrollview.CardScrollView;
 import com.example.test.myapplication.databinding.LayoutCardScrollviewBinding;

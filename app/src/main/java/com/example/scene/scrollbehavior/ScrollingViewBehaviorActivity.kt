@@ -1,4 +1,4 @@
-package com.example.scene.activity
+package com.example.scene.scrollbehavior
 
 import android.os.Bundle
 import android.view.View
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scene.activity.menu.MenuAdapter
-import com.example.scene.activity.menu.UIList.MenuItem
-import com.example.scene.activity.data.ScrollingViewBehaviorData
+import com.example.scene.uilist.menu.MenuAdapter
+import com.example.scene.uilist.menu.UIList.MenuItem
+import com.example.scene.scrollbehavior.data.ScrollingViewBehaviorData
 import com.example.test.myapplication.R
 import com.example.test.myapplication.databinding.ActivityScrollBehaviorBinding
 

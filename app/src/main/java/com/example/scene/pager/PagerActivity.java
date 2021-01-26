@@ -1,4 +1,4 @@
-package com.example.scene.activity;
+package com.example.scene.pager;
 
 import android.graphics.Point;
 import android.os.Bundle;

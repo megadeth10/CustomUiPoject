@@ -1,4 +1,4 @@
-package com.example.scene.activity.collapsinglayout
+package com.example.scene.caollapsingtollbar.collapsinglayout
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

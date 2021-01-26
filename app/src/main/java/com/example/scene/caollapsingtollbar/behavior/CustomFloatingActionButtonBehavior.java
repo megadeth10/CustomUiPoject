@@ -1,4 +1,4 @@
-package com.example.scene.activity.behavior;
+package com.example.scene.caollapsingtollbar.behavior;
 
 import android.content.Context;
 import android.util.AttributeSet;

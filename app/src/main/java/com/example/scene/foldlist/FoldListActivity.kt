@@ -1,4 +1,4 @@
-package com.example.scene.activity
+package com.example.scene.foldlist
 
 import android.os.Bundle
 import android.view.View
@@ -8,10 +8,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scene.activity.menu.MenuAdapter
-import com.example.scene.activity.menu.UIList
-import com.example.scene.activity.viewmodel.FoldListViewModel
-import com.example.scene.activity.viewmodel.HorizontalViewModel
+import com.example.scene.uilist.menu.MenuAdapter
+import com.example.scene.uilist.menu.UIList
+import com.example.scene.foldlist.viewmodel.FoldListViewModel
+import com.example.scene.foldlist.viewmodel.HorizontalViewModel
 import com.example.custom.widget.listview.callback.iRecycleViewAdapterCallback
 import com.example.custom.activity.ToolbarActivity
 import com.example.custom.widget.listview.adapter.BaseAdapter

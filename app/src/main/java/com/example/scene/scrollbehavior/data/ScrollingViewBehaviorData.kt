@@ -1,6 +1,6 @@
-package com.example.scene.activity.data
+package com.example.scene.scrollbehavior.data
 
-import com.example.scene.activity.menu.UIList
+import com.example.scene.uilist.menu.UIList
 
 class ScrollingViewBehaviorData{
     private val _listMenuItem: ArrayList<UIList.MenuItem> = ArrayList(0)

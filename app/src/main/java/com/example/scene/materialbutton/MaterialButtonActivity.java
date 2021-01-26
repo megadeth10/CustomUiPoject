@@ -1,4 +1,4 @@
-package com.example.scene.activity;
+package com.example.scene.materialbutton;
 
 import android.os.Bundle;
 import android.view.View;

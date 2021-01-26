@@ -1,4 +1,4 @@
-package com.example.scene.activity
+package com.example.scene.caollapsingtollbar
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
-import com.example.scene.activity.collapsinglayout.TabPagerAdapter
+import com.example.scene.caollapsingtollbar.collapsinglayout.TabPagerAdapter
 import com.example.test.myapplication.R
 import com.example.utils.Log
 import com.example.utils.util
