@@ -91,8 +91,7 @@ public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
                 case LayoutParams.COLLAPSE_MODE_PIN:
                     if (pinModeLayoutHeight != -1 && parallaxModeLayoutHeight != -1) {
                         float alpha = 255f * ((float) Math.abs(verticalOffset) / (float) (parallaxModeLayoutHeight - pinModeLayoutHeight));
-                        //API21에서 계속 변화 값이 들어온다.
-                        //예외 차원에서 해당 값을 정리 했다.
+                        //API21에서 verticalOffset값에 오차가 있어서 alpha값 필터를 적용함.
                         int adjustAlpha = (int) Math.min(255f, Math.max(0f, alpha));
                         ColorDrawable colorDrawable = (ColorDrawable) child.getBackground();
                         colorDrawable.setAlpha(adjustAlpha);
