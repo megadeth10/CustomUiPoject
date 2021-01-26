@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewParent;
 
+import com.example.utils.Log;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -59,13 +60,15 @@ public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
 
                 switch (lp.getCollapseMode()) {
                     case LayoutParams.COLLAPSE_MODE_PIN:
-                        if(this.pinModeLayoutHeight == -1) {
+                        if (this.pinModeLayoutHeight == -1) {
                             pinModeLayoutHeight = child.getHeight();
+                            Log.e(TAG, String.format("checkHeight() pinModeLayoutHeight: %d", pinModeLayoutHeight));
                         }
                         break;
                     case LayoutParams.COLLAPSE_MODE_PARALLAX:
-                        if(this.parallaxModeLayoutHeight == -1) {
+                        if (this.parallaxModeLayoutHeight == -1) {
                             parallaxModeLayoutHeight = child.getHeight();
+                            Log.e(TAG, String.format("checkHeight() parallaxModeLayoutHeight: %d", parallaxModeLayoutHeight));
                         }
                         break;
                     default:
@@ -88,8 +91,11 @@ public class CustomCollapsingToolbarLayout extends CollapsingToolbarLayout {
                 case LayoutParams.COLLAPSE_MODE_PIN:
                     if (pinModeLayoutHeight != -1 && parallaxModeLayoutHeight != -1) {
                         float alpha = 255f * ((float) Math.abs(verticalOffset) / (float) (parallaxModeLayoutHeight - pinModeLayoutHeight));
+                        //API21에서 계속 변화 값이 들어온다.
+                        //예외 차원에서 해당 값을 정리 했다.
+                        int adjustAlpha = (int) Math.min(255f, Math.max(0f, alpha));
                         ColorDrawable colorDrawable = (ColorDrawable) child.getBackground();
-                        colorDrawable.setAlpha((int) alpha);
+                        colorDrawable.setAlpha(adjustAlpha);
                         child.setBackground(colorDrawable);
                     }
                     break;
