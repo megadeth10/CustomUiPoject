@@ -26,7 +26,7 @@ abstract public class ToolbarActivity extends DialogActivity implements iToolbar
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "onClick");
+                Log.e(TAG, "navigationOnClick()");
                 finish();
             }
         });
