@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="checkViewModel"
+            type="com.example.test.material.viewmodel.CheckViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            style="@style/MyCheckBox"
+            android:id="@+id/all_cb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="전체"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            style="@style/MyCheckBox"
+            android:id="@+id/first_cb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="첫번째"
+            app:layout_constraintTop_toBottomOf="@id/all_cb" />
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/second_cb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="두번째"
+            app:layout_constraintTop_toBottomOf="@id/first_cb"/>
+        <CheckBox
+            android:id="@+id/third_cb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="세번째"
+            app:layout_constraintTop_toBottomOf="@id/second_cb"/>
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_button_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/third_cb">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button1"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button_label_private"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button2"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button_label_team"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button3"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button_label_everyone"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button4"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="button_label_custom"/>
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
