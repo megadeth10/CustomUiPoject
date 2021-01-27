@@ -5,6 +5,9 @@
         <variable
             name="checkViewModel"
             type="com.example.test.material.viewmodel.CheckViewModel" />
+        <variable
+            name="activity"
+            type="com.example.test.material.CheckboxActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="전체"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:setAllCheck="@{checkViewModel}"
+            app:setAllCheckObserver="@{checkViewModel.checkAll}"
+            app:activity="@{activity}"/>
 
         <com.google.android.material.checkbox.MaterialCheckBox
             style="@style/MyCheckBox"
@@ -25,19 +31,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="첫번째"
-            app:layout_constraintTop_toBottomOf="@id/all_cb" />
+            app:layout_constraintTop_toBottomOf="@id/all_cb"
+            app:setCheck="@{checkViewModel}"
+            app:setCheckObserver="@{checkViewModel.checkGroup}"
+            app:activity="@{activity}"/>
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/second_cb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="두번째"
-            app:layout_constraintTop_toBottomOf="@id/first_cb"/>
+            app:layout_constraintTop_toBottomOf="@id/first_cb"
+            app:setCheck="@{checkViewModel}"
+            app:setCheckObserver="@{checkViewModel.checkGroup}"
+            app:activity="@{activity}"/>
         <CheckBox
             android:id="@+id/third_cb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="세번째"
-            app:layout_constraintTop_toBottomOf="@id/second_cb"/>
+            app:layout_constraintTop_toBottomOf="@id/second_cb"
+            app:setCheck="@{checkViewModel}"
+            app:setCheckObserver="@{checkViewModel.checkGroup}"
+            app:activity="@{activity}"/>
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/toggle_button_group"
             android:layout_width="match_parent"
@@ -76,6 +91,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="완료"
-            app:layout_constraintTop_toBottomOf="@id/toggle_button_group"/>
+            app:layout_constraintTop_toBottomOf="@id/toggle_button_group"
+            app:setDataObserver="@{checkViewModel.checkAll}"
+            app:activity="@{activity}"
+            app:setOnClick="@{checkViewModel}"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="다음화면"
+            app:setOnClick="@{activity}"
+            app:layout_constraintTop_toBottomOf="@id/confirm_btn"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
