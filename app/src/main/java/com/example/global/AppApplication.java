@@ -12,6 +12,7 @@ import com.example.scene.pagedlist.module.PostDataSourceModuleKt;
 import com.example.store.user.UserModuleKt;
 import com.example.scene.storetest.module.StoreTestViewModelModuleKt;
 import com.example.scene.storetestsub.module.StoreTestSubViewModelModuleKt;
+import com.example.test.material.module.CheckViewModelModuleKt;
 import com.example.test.myapplication.BuildConfig;
 import com.example.utils.Log;
 
@@ -44,6 +45,7 @@ public class AppApplication extends Application {
         modules.add(UserModuleKt.getUserModule());
         modules.add(StoreTestViewModelModuleKt.getStoreViewModelModule());
         modules.add(StoreTestSubViewModelModuleKt.getStoreSubViewModelModule());
+        modules.add(CheckViewModelModuleKt.getCheckViewModelModule());
         KoinApplication koin = KoinAndroidApplication.create(this)
                 .modules(modules);
         startKoin(GlobalContext.INSTANCE, koin);

@@ -13,6 +13,9 @@ import com.example.test.material.viewmodelfactory.CheckViewModelFactory
 import com.example.test.myapplication.R
 import com.example.test.myapplication.databinding.LayoutCheckboxBinding
 import com.example.utils.Log
+import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 /**
  * TODO: bindingAdapter로 activity를 이용하여 코드를 bindingAdapter로 Activity로 부터 코드를 이동시킴
@@ -21,7 +24,8 @@ import com.example.utils.Log
  */
 class CheckboxActivity:ToolbarActivity() {
     private lateinit var contentBinding: LayoutCheckboxBinding
-    private lateinit var viewModel: CheckViewModel
+    private lateinit var viewModel: CheckViewModel  // by viewModel { parametersOf(map)}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var name = intent?.getStringExtra("name") ?: ""
@@ -48,7 +52,8 @@ class CheckboxActivity:ToolbarActivity() {
             set(contentBinding.secondCb.id.toString(), false)
             set(contentBinding.thirdCb.id.toString(), false)
         }
-        this.viewModel = ViewModelProvider(this, CheckViewModelFactory(map)).get(CheckViewModel::class.java)
+        this.viewModel = getViewModel { parametersOf(map) }
+//        this.viewModel = ViewModelProvider(this, CheckViewModelFactory(map)).get(CheckViewModel::class.java)
         this.contentBinding.checkViewModel = this.viewModel
         Log.e(TAG, "setContent() viewModel $viewModel")
 
