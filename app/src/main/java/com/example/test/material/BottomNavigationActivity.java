@@ -12,6 +12,8 @@ import com.example.test.fragment.FirstFragment;
 import com.example.test.fragment.FourFragment;
 import com.example.test.fragment.SecondFragment;
 import com.example.test.fragment.ThreeFragment;
+import com.example.test.material.viewmodel.BottomNavigationViewModel;
+import com.example.test.material.viewmodelfactory.BottomNavigationViewModelFactory;
 import com.example.test.myapplication.R;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,9 +21,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 public class BottomNavigationActivity extends ToolbarActivity {
-
+    private BottomNavigationViewModel viewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class BottomNavigationActivity extends ToolbarActivity {
     @Override
     public void setContent() {
         setContentsLayout(R.layout.layout_bottom_navigation);
-
+        this.viewModel = new ViewModelProvider(this, new BottomNavigationViewModelFactory(R.id.menu_add)).get(BottomNavigationViewModel.class);
         BottomNavigationView bottomView = findViewById(R.id.bottom_navigation);
         bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -53,7 +56,7 @@ public class BottomNavigationActivity extends ToolbarActivity {
                 showDialog();
             }
         });
-        setFragmentView(R.id.menu_add);
+        setFragmentView(this.viewModel.getCurrentMenuId().getValue());
     }
 
     private boolean setFragmentView(int menuId){
@@ -61,7 +64,7 @@ public class BottomNavigationActivity extends ToolbarActivity {
 
         switch (menuId){
             case R.id.menu_add:
-                fragment = new FirstFragment(new Object());
+                fragment = FirstFragment.newInstance(new Object());
                 break;
             case R.id.menu_remove:
                 fragment = new SecondFragment();
@@ -76,6 +79,7 @@ public class BottomNavigationActivity extends ToolbarActivity {
                 fragment = null;
                 break;
         }
+        this.viewModel.setCurrentMenuId(menuId);
 
         if(fragment != null) {
             getSupportFragmentManager()
