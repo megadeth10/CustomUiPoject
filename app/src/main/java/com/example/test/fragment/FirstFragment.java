@@ -22,24 +22,37 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FirstFragment extends Fragment implements View.OnClickListener{
     private String TAG = FirstFragment.class.getSimpleName();
-    private Object mData;
     private ArrayList<NormalItem> mListData = new ArrayList();
-    public FirstFragment(Object data){
-        this.mData = data;
-        mListData.add(new NormalItem("aaaa"));
-        mListData.add(new NormalItem("bbbb"));
-        mListData.add(new NormalItem("cccc"));
-        mListData.add(new NormalItem("dddd"));
-        mListData.add(new NormalItem("eeee"));
-        mListData.add(new NormalItem("ffff"));
-        mListData.add(new NormalItem("gggg"));
-        mListData.add(new NormalItem("hhhh"));
+    private static String LIST_BUNDLE_NAME = "list";
+    /**
+     * TODO : Fragment 사용시 빈생성자 정의 해줘야 한다. 화면 rotate시에  could not find fragment constructor exception 발생
+     * ref : https://black-jin0427.tistory.com/250
+     */
+    public static FirstFragment newInstance(Object obj){
+        FirstFragment fragment = new FirstFragment();
+        Bundle bundle = new Bundle();
+
+        Object d = obj;
+        ArrayList<NormalItem> list = new ArrayList(0);
+        list.add(new NormalItem("aaaa"));
+        list.add(new NormalItem("bbbb"));
+        list.add(new NormalItem("cccc"));
+        list.add(new NormalItem("dddd"));
+        list.add(new NormalItem("eeee"));
+        list.add(new NormalItem("ffff"));
+        list.add(new NormalItem("gggg"));
+        list.add(new NormalItem("hhhh"));
+        bundle.putSerializable(LIST_BUNDLE_NAME, list);
+
+        fragment.setArguments(bundle);
+        return fragment;
     }
-    
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG,"onCreate()");
+        this.mListData = (ArrayList<NormalItem>) getArguments().getSerializable(LIST_BUNDLE_NAME);
     }
 
     @Nullable
