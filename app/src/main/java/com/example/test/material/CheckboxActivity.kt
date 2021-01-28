@@ -57,7 +57,7 @@ class CheckboxActivity:ToolbarActivity() {
         this.contentBinding.checkViewModel = this.viewModel
         Log.e(TAG, "setContent() viewModel $viewModel")
 
-        this.contentBinding.toggleButtonGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        this.contentBinding.toggleButtonGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             Log.e(TAG, "ButtonCheckedListener() checkedId: $checkedId isChecked: $isChecked")
         }
     }
