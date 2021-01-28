@@ -67,13 +67,13 @@ public class BottomNavigationActivity extends ToolbarActivity {
                 fragment = FirstFragment.newInstance(new Object());
                 break;
             case R.id.menu_remove:
-                fragment = new SecondFragment();
+                fragment = SecondFragment.newInstance(null, null);
                 break;
             case R.id.menu_plus:
-                fragment = new ThreeFragment();
+                fragment = ThreeFragment.newInstance(null, null);
                 break;
             case R.id.menu_minus:
-                fragment = new FourFragment();
+                fragment = FourFragment.newInstance(null, null);
                 break;
             default:
                 fragment = null;
