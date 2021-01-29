@@ -17,6 +17,7 @@ import com.example.test.aac.FragmentBindingActivity;
 import com.example.test.databinding.DataBindingActivity;
 import com.example.test.material.BottomNavigationActivity;
 import com.example.test.material.CheckboxActivity;
+import com.example.test.material.ScrollTabActivity;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class UIList {
             mList.add(new MenuItem("Rxjava test Activity", RxjavaSampleActivity.class));
             mList.add(new MenuItem("Paged List Activity", PostPagedListActivity.class));
             mList.add(new MenuItem("Material Checkbox", CheckboxActivity.class));
+            mList.add(new MenuItem("Material Scroll Tab", ScrollTabActivity.class));
             mList.add(new MenuItem("AAC Test Activity", AddUserProfileActivity.class));
             mList.add(new MenuItem("AAC Test Fragment", FragmentBindingActivity.class));
             mList.add(new MenuItem("DataBinding Activity", DataBindingActivity.class));
