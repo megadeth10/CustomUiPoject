@@ -23,6 +23,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+/**
+ * TODO: 화면 rotate시에 Fragment 2번 생성 되는 문제 수정해야함.
+ * ref: https://stackoverflow.com/questions/29177961/android-fragment-created-twice-orientation-change
+ */
 public class BottomNavigationActivity extends ToolbarActivity {
     private BottomNavigationViewModel viewModel;
     @Override
