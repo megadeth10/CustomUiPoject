@@ -39,7 +39,7 @@ class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
     }
 
     override fun onDestroy() {
-        this.disposable.clear()
+        this.disposable.dispose()
         super.onDestroy()
     }
 

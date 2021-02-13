@@ -41,7 +41,8 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
     }
 
     override fun onDestroy() {
-        this.disposable.clear()
+        Log.e(TAG, "onDestroy() disposable size: ${this.disposable.size()}")
+        this.disposable.dispose()
         super.onDestroy()
     }
 
@@ -98,6 +99,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                     }
 
                     override fun onSubscribe(d: Disposable?) {
+                        Log.e(TAG, "idObserver onSubscribe()")
                         disposable.add(d)
                     }
 
@@ -133,6 +135,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                     }
 
                     override fun onSubscribe(d: Disposable?) {
+                        Log.e(TAG, "passwordObserver onSubscribe()")
                         disposable.add(d)
                     }
 
@@ -181,7 +184,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
         val bSwitchObserverable = PublishSubject.create<Boolean>()
         aSwitchObserverable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<Boolean>{
+                .subscribe(object : Observer<Boolean> {
                     override fun onComplete() {
                         Log.e(TAG, "aSwitch onComplete()")
                     }
@@ -200,7 +203,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                 })
         bSwitchObserverable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<Boolean>{
+                .subscribe(object : Observer<Boolean> {
                     override fun onComplete() {
                         Log.e(TAG, "bSwitch onComplete()")
                     }
@@ -230,7 +233,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                     result
                 })
 
-        combineSwitch.subscribe(object : Observer<String>{
+        combineSwitch.subscribe(object : Observer<String> {
             override fun onComplete() {
                 Log.e(TAG, "combineSwitch onComplete()")
             }
@@ -263,27 +266,32 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
         val onNextAction: Consumer<String> = Consumer {
             Log.e(TAG, "$it")
         }
-        val textDisposable = observer.map { it }
+        observer.map { it }
+                .doOnComplete {
+                    Log.e(TAG, "complete() a text Observer")
+                }
                 .subscribe(onNextAction)
-        disposable.add(textDisposable)
-        val textDisposable2 = Observable.just("hello, world")
+        Observable.just("hello, world")
                 .map {
                     "$it aaa"
+                }
+                .doOnComplete {
+                    Log.e(TAG, "complete() b text Observer")
                 }
                 .subscribe {
                     Log.e(TAG, "$it")
                 }
-        disposable.add(textDisposable2)
         val list = listOf<String>("a", "b", "c", "d", "e")
-        val posable = Observable.fromIterable(list)
+        Observable.fromIterable(list)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .doOnNext(Consumer { t -> Log.e(TAG, String.format("simple doOnNext() %s ", t)) })
-                .doOnComplete { Log.e(TAG, String.format("simple onComplete()")) }
+                .doOnComplete {
+                    Log.e(TAG, String.format("simple onComplete()"))
+                }
                 .doOnError { Log.e(TAG, String.format("simple onError()")) }
                 .map { String.format("%s ", it) }
                 .subscribe(Consumer { this.contentBinding.simpleRxjavaResultTV.append(it) })
-        disposable.add(posable)
     }
 
     // Observable과 observer를 분리 하여 선언
@@ -301,7 +309,7 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                 it.onError(e)
             }
         })
-        val postObserver = postObservable.subscribeOn(Schedulers.io())
+        postObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { Log.e(TAG, String.format("onNext()")) }
                 .doOnError { Log.e(TAG, String.format("onError()")) }
@@ -310,7 +318,6 @@ class RxjavaSampleActivity : ToolbarActivity(), View.OnClickListener {
                     val title = "${it.title} "
                     this.contentBinding.createObserverResultTV.append(title)
                 }
-        disposable.add(postObserver)
     }
 
     private fun getPost(): ArrayList<Post> {

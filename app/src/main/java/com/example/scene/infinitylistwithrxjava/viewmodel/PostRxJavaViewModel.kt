@@ -78,7 +78,7 @@ class PostRxJavaViewModel : ViewModel {
     }
 
     private fun clearDisposable() {
-        this.disposable.clear()
+        this.disposable.dispose()
     }
 
     private fun nextPageNumber() = this.pageNumber++

@@ -39,7 +39,7 @@ class StoreTestSubViewModel(user: User): ViewModel() {
         if(this.tokenObserverable != null){
             userStore.removeTokenSubscribe(this.tokenObserverable!!)
         }
-        this.disposable.clear()
+        this.disposable.dispose()
         super.onCleared()
     }
     private fun setToken(){
