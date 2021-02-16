@@ -10,6 +10,9 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 
+/**
+ * TODO : rxjava subscribe를 activity lifecycle에 맞추어야 한다. activity backstack에 있어도 onNext가 호출된다.
+ */
 class StoreTestViewModel(userStore:User): ViewModel() {
     private val userStore= userStore
     private val _userToken: MutableLiveData<String> = MutableLiveData(userStore.getToken())
