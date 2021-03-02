@@ -33,9 +33,14 @@ class User {
     }
 
     fun notifyTokenSubscribe(state: Boolean){
-        this.tokenObserverableArray.forEach{
-            it.onNext(state)
+        val endIndex = this.tokenObserverableArray.size - 1
+        for(index in endIndex downTo 0 step 1){
+            val observerable = this.tokenObserverableArray[index]
+            observerable?.onNext(state)
         }
+//        this.tokenObserverableArray.forEach{
+//            it.onNext(state)
+//        }
     }
 
     fun getToken():String {
