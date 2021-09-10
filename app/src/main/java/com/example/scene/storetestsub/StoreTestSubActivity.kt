@@ -30,6 +30,7 @@ class StoreTestSubActivity : ToolbarActivity(), View.OnClickListener {
         this.contentsBinding.lifecycleOwner = this
         this.contentsBinding.storeTestSubViewModel = subViewModel
         this.setContentsViewBinding(this.contentsBinding)
+        this.subViewModel.setLifeCycle(this)
 
         this.contentsBinding.loginBtn.setOnClickListener(this)
         this.subViewModel.userToken.observe(this, Observer {

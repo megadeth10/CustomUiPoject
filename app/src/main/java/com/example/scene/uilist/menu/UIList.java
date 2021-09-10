@@ -26,6 +26,7 @@ public class UIList {
 
     public UIList(){
         if(mList.size() == 0){
+            mList.add(new MenuItem("Widget Test", StoreTestActivity.class));
             mList.add(new MenuItem("user Store Test", StoreTestActivity.class));
             mList.add(new MenuItem("Infinity List with Rxjava", PostListWithRxjavaActivity.class));
             mList.add(new MenuItem("Rxjava test Activity", RxjavaSampleActivity.class));

@@ -9,11 +9,12 @@ import android.widget.Toast;
 import com.example.test.myapplication.R;
 import com.example.utils.Log;
 import com.google.android.material.snackbar.Snackbar;
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends RxAppCompatActivity {
     protected String TAG = BaseActivity.class.getSimpleName();
     protected Snackbar mSnackBar;
     protected Context mContext;

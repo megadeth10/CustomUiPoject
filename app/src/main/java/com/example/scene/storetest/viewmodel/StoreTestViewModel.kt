@@ -3,8 +3,10 @@ package com.example.scene.storetest.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.scene.storetest.StoreTestActivity
 import com.example.store.user.User
 import com.example.utils.Log
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -14,14 +16,15 @@ import io.reactivex.rxjava3.subjects.PublishSubject
  * TODO : rxjava subscribe를 activity lifecycle에 맞추어야 한다. activity backstack에 있어도 onNext가 호출된다.
  */
 class StoreTestViewModel(userStore:User): ViewModel() {
-    private val userStore= userStore
+    private var userStore = userStore
     private val _userToken: MutableLiveData<String> = MutableLiveData(userStore.getToken())
     val userToken: LiveData<String>
         get() = this._userToken
     private var tokenObserverable:PublishSubject<Boolean>? = null
     private val disposable = CompositeDisposable()
-    init {
-        tokenObserverable = this.userStore.addTokenSubscribe(object : Observer<Boolean> {
+
+    fun setLifeCycle(activity: RxAppCompatActivity) {
+        tokenObserverable = this.userStore?.addTokenSubscribe(object : Observer<Boolean> {
             override fun onComplete() {
                 Log.e(TAG, "tokenObserverable onComplete()")
             }
@@ -39,7 +42,9 @@ class StoreTestViewModel(userStore:User): ViewModel() {
             override fun onError(e: Throwable?) {
                 Log.e(TAG, "tokenObserverable onError()")
             }
-        })
+        },
+                activity
+        )
     }
 
     companion object{
@@ -69,4 +74,5 @@ class StoreTestViewModel(userStore:User): ViewModel() {
     fun logout() = userStore.deleteToken()
 
     fun isLogin():Boolean = userStore.isLogin()
+
 }

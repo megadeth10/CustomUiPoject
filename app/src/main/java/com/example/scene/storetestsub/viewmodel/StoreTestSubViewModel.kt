@@ -2,7 +2,10 @@ package com.example.scene.storetestsub.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.scene.storetest.viewmodel.StoreTestViewModel
 import com.example.store.user.User
+import com.example.utils.Log
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -16,7 +19,10 @@ class StoreTestSubViewModel(user: User): ViewModel() {
     private var tokenObserverable: PublishSubject<Boolean>? = null
     private val disposable = CompositeDisposable()
     init {
-        tokenObserverable = this.userStore.addTokenSubscribe(object: Observer<Boolean> {
+    }
+
+    fun setLifeCycle(activity: RxAppCompatActivity) {
+        tokenObserverable = this.userStore?.addTokenSubscribe(object : Observer<Boolean> {
             override fun onComplete() {
 
             }
@@ -32,7 +38,9 @@ class StoreTestSubViewModel(user: User): ViewModel() {
             override fun onError(e: Throwable?) {
 
             }
-        })
+        },
+                activity
+        )
     }
 
     override fun onCleared() {

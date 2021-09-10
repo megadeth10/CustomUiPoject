@@ -56,6 +56,7 @@ class StoreTestActivity : ToolbarActivity(), View.OnClickListener {
         this.contentBinding.storeViewModel = this.storeViewModel
         this.contentBinding.lifecycleOwner = this
         this.setContentsViewBinding(this.contentBinding)
+        this.storeViewModel.setLifeCycle(this)
 
         storeViewModel.userToken.observe(this, Observer {
             this.contentBinding.tokenResultTv.text = it

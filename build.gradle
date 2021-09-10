@@ -8,6 +8,7 @@ buildscript {
         koin_version= "2.2.1"
         paging_version = "2.1.2"
         rxjava_version = "3.0.0"
+        rxLifecycle_version = "4.0.2"
     }
 
     repositories {

@@ -3,76 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.test.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.example.global.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:allowBackup"
-        android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name="com.example.test.material.ScrollTabActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.test.material.CheckboxActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.scene.storetestsub.StoreTestSubActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.scene.storetest.StoreTestActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.scene.infinitylistwithrxjava.PostListWithRxjavaActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.scene.rxjava.RxjavaSampleActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.scene.pagedlist.PostPagedListActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.test.databinding.DataBindingActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.test.aac.FragmentBindingActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.test.aac.AddUserProfileActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.test.aac.UserProfileActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor"/>
-        <activity android:name="com.example.test.aac.EditUserProfileActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        tools:replace="android:allowBackup">
+        <activity android:name="com.example.test.widget.TestActivity"></activity>
+        <activity
+            android:name="com.example.test.material.ScrollTabActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.test.material.CheckboxActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.scene.storetestsub.StoreTestSubActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.scene.storetest.StoreTestActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.scene.infinitylistwithrxjava.PostListWithRxjavaActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.scene.rxjava.RxjavaSampleActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.scene.pagedlist.PostPagedListActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.test.databinding.DataBindingActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.test.aac.FragmentBindingActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.test.aac.AddUserProfileActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.test.aac.UserProfileActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name="com.example.test.aac.EditUserProfileActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.nestedscrollview.NestedScrollViewActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.foldlist.FoldListActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor" />
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.scrollbehavior.ScrollingViewBehaviorActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor" />
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.caollapsingtollbar.CollapsingToolbarLayoutActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.infinitylist.PostInfinityListActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor" />
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.test.material.BottomNavigationActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.cardscroll.CardScrollActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:screenOrientation="sensor" />
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name="com.example.scene.materialbutton.MaterialButtonActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
@@ -104,7 +119,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

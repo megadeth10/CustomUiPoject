@@ -74,6 +74,8 @@ class PostRxJavaViewModel : ViewModel {
     }
 
     private fun addDisposabel(disposable: Disposable) {
+        val size = this.disposable.size()
+        Log.e(TAG, "addDisposabel() size: $size")
         this.disposable.add(disposable)
     }
 

@@ -1,8 +1,13 @@
 package com.example.store.user
 
 import android.app.Application
+import androidx.lifecycle.Lifecycle
 import com.example.secure.secure
 import com.example.utils.Log
+import com.trello.rxlifecycle4.android.ActivityEvent
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle4.kotlin.bindToLifecycle
+import com.trello.rxlifecycle4.kotlin.bindUntilEvent
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -18,11 +23,12 @@ class User {
         this.secure = secure()
     }
 
-    fun addTokenSubscribe(observer: Observer<Boolean>): PublishSubject<Boolean>? {
+    fun addTokenSubscribe(observer: Observer<Boolean>, activity: RxAppCompatActivity): PublishSubject<Boolean>? {
         Log.e(TAG, "addTokenSubscribe() size: ${this.tokenObserverableArray.size}")
         var observerable = PublishSubject.create<Boolean>()
         observerable.observeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.newThread())
+                .bindUntilEvent(activity, ActivityEvent.PAUSE)
         observerable.subscribe(observer)
         this.tokenObserverableArray.add(observerable)
         return observerable
@@ -75,6 +81,6 @@ class User {
     companion object {
         val TAG = User::class.java.simpleName
         val TOKEN_KEY_NAME = "token"
-        val DEFAULT_TOKEN = "기본토큰"
+        val DEFAULT_TOKEN = "default_token"
     }
 }
