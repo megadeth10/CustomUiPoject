@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.scene.caollapsingtollbar.collapsinglayout.TabPagerAdapter
 import com.example.test.myapplication.R
 import com.example.utils.Log
-import com.example.utils.util
+import com.example.utils.Util
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -94,7 +94,7 @@ class CollapsingToolbarLayoutActivity : AppCompatActivity() {
     private fun loadImage(){
         val imageView = findViewById<ImageView>(R.id.image);
         var width = windowManager.defaultDisplay.width
-        var scalePoint = util.ratioSize(this,375f, 300f, null)
+        var scalePoint = Util.ratioSize(this, 375f, 300f)
         Glide.with(this)
                 .load("https://tlj.co.kr:7008/data/product/2018-3-14_event(46).jpg")
                 .override(width, scalePoint.y)

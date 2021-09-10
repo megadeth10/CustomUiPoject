@@ -12,7 +12,7 @@ import com.example.custom.view.pager.CustomViewPager;
 import com.example.custom.view.pager.adapter.ImagePagerAdapter;
 import com.example.custom.view.pager.adapter.item.ImagePagerItem;
 import com.example.test.myapplication.R;
-import com.example.utils.util;
+import com.example.utils.Util;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class PagerActivity extends ToolbarActivity implements Toolbar.OnMenuItem
         };
         mPager.setAdapter(new ImagePagerAdapter(this, list, clickListener));
         ViewGroup.LayoutParams layoutParams = mPager.getLayoutParams();
-        Point scaledPoint = util.ratioSize(this, 375.0f, 200.0f, null);
+        Point scaledPoint = Util.Companion.ratioSize(this, 375.0f, 200.0f);
         layoutParams.height = scaledPoint.y;
         logE(String.format("onCreate scaledPoint.y : %d", scaledPoint.y));
         mPager.setLayoutParams(layoutParams);

@@ -18,6 +18,7 @@ import com.example.test.databinding.DataBindingActivity;
 import com.example.test.material.BottomNavigationActivity;
 import com.example.test.material.CheckboxActivity;
 import com.example.test.material.ScrollTabActivity;
+import com.example.test.widget.TestActivity;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class UIList {
 
     public UIList(){
         if(mList.size() == 0){
-            mList.add(new MenuItem("Widget Test", StoreTestActivity.class));
+            mList.add(new MenuItem("Widget Test", TestActivity.class));
             mList.add(new MenuItem("user Store Test", StoreTestActivity.class));
             mList.add(new MenuItem("Infinity List with Rxjava", PostListWithRxjavaActivity.class));
             mList.add(new MenuItem("Rxjava test Activity", RxjavaSampleActivity.class));
