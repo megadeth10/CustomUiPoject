@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name="com.example.test.widget.TestActivity"></activity>
+        <activity
+            android:name="com.example.scene.prefrence.PreferenceActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name="com.example.test.widget.TestActivity" />
         <activity
             android:name="com.example.test.material.ScrollTabActivity"
             android:screenOrientation="sensor"

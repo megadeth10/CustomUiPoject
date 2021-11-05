@@ -6,6 +6,7 @@ import com.example.scene.infinitylist.PostInfinityListActivity;
 import com.example.scene.materialbutton.MaterialButtonActivity;
 import com.example.scene.caollapsingtollbar.CollapsingToolbarLayoutActivity;
 import com.example.scene.nestedscrollview.NestedScrollViewActivity;
+import com.example.scene.prefrence.PreferenceActivity;
 import com.example.scene.scrollbehavior.ScrollingViewBehaviorActivity;
 import com.example.scene.pager.PagerActivity;
 import com.example.scene.infinitylistwithrxjava.PostListWithRxjavaActivity;
@@ -27,6 +28,7 @@ public class UIList {
 
     public UIList(){
         if(mList.size() == 0){
+            mList.add(new MenuItem("Secure Preference", PreferenceActivity.class));
             mList.add(new MenuItem("Widget Test", TestActivity.class));
             mList.add(new MenuItem("user Store Test", StoreTestActivity.class));
             mList.add(new MenuItem("Infinity List with Rxjava", PostListWithRxjavaActivity.class));
